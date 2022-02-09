@@ -117,6 +117,7 @@
                     if (isiOS) {
                         marker.addEventListener("markerFound", function () {
                             document.getElementById("btnPlay").addEventListener("click", function (e) {
+                                alert("click")
                                 document.getElementById("vid1").play()
                             });
                             document.getElementById("btnStop").addEventListener("click", function (e) {
