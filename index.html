@@ -40,7 +40,6 @@
         justify-content: center;
         align-items: center;
         z-index: 10;
-        background: blue;
     }
 
     .say-hi-button {
@@ -52,6 +51,7 @@
         width: 4em;
         height: 2em;
         margin: 0.25em;
+        z-index: 100;
     }
 </style>
 
@@ -65,8 +65,8 @@
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        <a-nft videohandler01 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10" smoothTolerance=".01"
-            smoothThreshold="5">
+        <a-nft videohandler01 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10"
+            smoothTolerance=".01" smoothThreshold="5">
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
         </a-nft>
@@ -115,8 +115,6 @@
                         var marker = this.el;
 
                         this.vid = document.querySelector("#vid1");
-                    },
-                    tick: function () {
 
                         marker.addEventListener("markerFound", function () {
                             document.getElementById("btnPlay").addEventListener("click", function (e) {
