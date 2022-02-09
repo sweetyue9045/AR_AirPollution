@@ -115,9 +115,8 @@
                         var marker = this.el;
 
                         this.vid = document.querySelector("#vid1");
-
+                   
                         marker.addEventListener("markerFound", function () {
-                            alert("A")
                             document.getElementById("btnPlay").addEventListener("click", function (e) {
                                 alert("clickplay")
                                 document.getElementById("vid1").play()
