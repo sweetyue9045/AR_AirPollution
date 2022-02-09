@@ -115,7 +115,7 @@
                         this.markerVisible = false
                     },
                     tick: function () {
-                        if (!this.marker) return
+                        // if (!this.marker) return
                         if (this.marker.object3D.visible) {
                             alert("A")
                             // if (!this.markerVisible) {
@@ -123,6 +123,7 @@
                             //     this.markerVisible = true
                             // }
                         } else {
+                            alert("B")
                             // if (this.markerVisbile) {
                             //     // lost sight of the marker
                             //     this.markerVisible = false
