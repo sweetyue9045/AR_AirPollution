@@ -107,6 +107,9 @@
             alert("掃描成功時可透過按鈕控制影片")
             document.getElementById("mybuttons").style.display = "flex"
         }
+        document.querySelector("#btnPlay").addEventListener("click", function (e) {
+            alert("click1")
+        });
         window.onload = function () {
             AFRAME.registerComponent("videohandler01", {
                 init: function () {
