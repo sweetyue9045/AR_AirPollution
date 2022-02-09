@@ -74,9 +74,9 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
-        window.addEventListener("click", function () {
-            playvideo("#vid1")
-        });
+        // window.addEventListener("click", function () {
+        //     playvideo("#vid1")
+        // });
         function playvideo(vidnum) {
             var videoEl_1 = document.querySelector(vidnum);
             videoEl_1.play();
@@ -89,6 +89,9 @@
                     this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
+                        this.el.addEventListener("click", function () {
+                            this.vid.play();
+                        });
                         this.vid.play();
                     }.bind(this));
 
