@@ -119,17 +119,15 @@
                     marker.addEventListener("markerFound", function () {
                         if (isiOS) {
                             document.getElementById("mybuttons").style.display = "flex"
+                            document.getElementById("btnPlay").addEventListener("click", function (e) {
+                                document.getElementById("vid1").play()
+                            });
+                            document.getElementById("btnStop").addEventListener("click", function (e) {
+                                document.getElementById("vid1").pause();
+                                document.getElementById("vid1").currentTime = 0;
+                            });
                         }
-
-                        document.getElementById("btnPlay").addEventListener("click", function (e) {
-                            document.getElementById("vid1").play()
-
-                        });
-                        document.getElementById("btnStop").addEventListener("click", function (e) {
-                            document.getElementById("vid1").pause();
-                            document.getElementById("vid1").currentTime = 0;
-                        });
-                        playvideo(vid1)
+                        this.vid.play();
                     }.bind(this));
 
                     marker.addEventListener("markerLost", function () {
