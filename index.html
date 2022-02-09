@@ -52,15 +52,67 @@
         height: 2em;
         margin: 0.25em;
     }
+
+    #mybuttongroup input[type="radio"] {
+        display: none;
+    }
+
+    #mybuttongroup input:checked+.button {
+        background: #5e7380;
+        color: #fff;
+        cursor: default;
+    }
+
+    #mybuttongroup .button {
+        display: inline-block;
+        margin: 0 5px 10px 0;
+        padding: 5px 10px;
+        background: #f7f7f7;
+        color: #333;
+        cursor: pointer;
+    }
+
+    #mybuttongroup .round {
+        border-radius: 5px;
+    }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
     <div class="arjs-loader">
         <div>Loading, please wait...</div>
     </div>
-    <div class="buttons" id="mybuttons">
-        <button id="btnPlay" class="say-hi-button">開始</button>
-        <button id="btnStop" class="say-hi-button">暫停</button>
+    <div class="buttons" id="mybuttons01">
+        <button id="btnPlay01" class="say-hi-button">01開始</button>
+        <button id="btnStop01" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons" id="mybuttons02">
+        <button id="btnPlay02" class="say-hi-button">02開始</button>
+        <button id="btnStop02" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons" id="mybuttons03">
+        <button id="btnPlay03" class="say-hi-button">03開始</button>
+        <button id="btnStop03" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons" id="mybuttons04">
+        <button id="btnPlay04" class="say-hi-button">04開始</button>
+        <button id="btnStop04" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons" id="mybuttons05">
+        <button id="btnPlay05" class="say-hi-button">05開始</button>
+        <button id="btnStop05" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons" id="mybuttons06">
+        <button id="btnPlay06" class="say-hi-button">06開始</button>
+        <button id="btnStop06" class="say-hi-button">暫停</button>
+    </div>
+    <div class="" id="mybuttongroup">
+        <label><input type="radio" name="label" value="01" checked="checked"><span
+                class="round button">01</span></label>
+        <label><input type="radio" name="label" value="02"><span class="round button">02</span></label>
+        <label><input type="radio" name="label" value="03"><span class="round button">03</span></label>
+        <label><input type="radio" name="label" value="04"><span class="round button">04</span></label>
+        <label><input type="radio" name="label" value="05"><span class="round button">05</span></label>
+        <label><input type="radio" name="label" value="06"><span class="round button">06</span></label>
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
@@ -112,16 +164,40 @@
         window.addEventListener("click", function () {
             document.getElementById("vid1").play()
         });
+
         document.getElementById("btnPlay").addEventListener("click", function (e) {
             alert("clickplay")
             document.getElementById("vid1").play()
         });
+
+        var label = document.querySelector('input[name = "label"]:checked').value;
+        switch (label) {
+            case 01:
+                document.getElementById("mybuttons01").style.display = "flex"
+                break;
+            case 02:
+                document.getElementById("mybuttons02").style.display = "flex"
+                break;
+            case 03:
+                document.getElementById("mybuttons03").style.display = "flex"
+                break;
+            case 04:
+                document.getElementById("mybuttons04").style.display = "flex"
+                break;
+            case 05:
+                document.getElementById("mybuttons05").style.display = "flex"
+                break;
+            case 06:
+                document.getElementById("mybuttons06").style.display = "flex"
+                break;
+            default:
+                break;
+        }
         window.onload = function () {
 
             if (isiOS) {
                 alert("掃描成功時可透過按鈕控制影片")
-                document.getElementById("mybuttons").style.display = "flex"
-
+                document.getElementById("mybuttongroup").style.display = "flex"
             }
 
 
@@ -193,7 +269,7 @@
                 init: function () {
                     var marker = this.el;
 
-                    this.vid = document.getElementById("vid2");
+                    this.vid = document.querySelector("#vid2");
 
                     marker.addEventListener("markerFound", function () {
                         this.vid.play();
