@@ -76,7 +76,7 @@
     <script>
 
         function playvideo(vidnum) {
-            var videoEl_1 = document.querySelector('#' + vidnum);
+            var videoEl_1 = document.querySelector(vidnum);
             videoEl_1.play();
         }
         window.onload = function () {
@@ -87,10 +87,10 @@
                     this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
-                        playvideo("vid1")
-                        // window.addEventListener("click", function (e) {
-                            
-                        // });
+                        
+                        window.addEventListener("click", function (e) {
+                            playvideo("#vid1")
+                        });
                     }.bind(this));
 
                     marker.addEventListener("markerLost", function () {
