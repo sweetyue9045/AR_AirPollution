@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>ARWeb</title>
+    <!-- <title>ARWeb</title> -->
 
     <!-- <link rel="icon" href="" /> -->
 
@@ -46,7 +46,7 @@
             <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
             </a-video>
         </a-nft>
-        <a-nft videohandler2 type="nft" url="./data/NFT/02" smooth="true" smoothCount="10" smoothTolerance=".01"
+        <!-- <a-nft videohandler2 type="nft" url="./data/NFT/02" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
             </a-video>
@@ -60,10 +60,10 @@
             smoothThreshold="5">
             <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
             </a-video>
-        </a-nft>
+        </a-nft> -->
         <a-nft videohandler0209 type="nft" url="./data/NFT/0209" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid2" position="50 -200 -100" rotation="-90 0 0" play="true" width=305 height=270>
+            <a-video src="#vid2" position="50 -200 0" rotation="-90 0 0" play="true" width=610 height=540>
             </a-video>
         </a-nft>
         <a-assets>
@@ -95,54 +95,54 @@
                     }.bind(this));
                 }
             });
-            AFRAME.registerComponent("videohandler2", {
-                init: function () {
-                    var marker = this.el;
+            // AFRAME.registerComponent("videohandler2", {
+            //     init: function () {
+            //         var marker = this.el;
 
-                    this.vid = document.querySelector("#vid1");
+            //         this.vid = document.querySelector("#vid1");
 
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
+            //         marker.addEventListener("markerFound", function () {
+            //             this.vid.play();
+            //         }.bind(this));
 
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
-            AFRAME.registerComponent("videohandler3", {
-                init: function () {
-                    var marker = this.el;
+            //         marker.addEventListener("markerLost", function () {
+            //             this.vid.pause();
+            //             this.vid.currentTime = 0;
+            //         }.bind(this));
+            //     }
+            // });
+            // AFRAME.registerComponent("videohandler3", {
+            //     init: function () {
+            //         var marker = this.el;
 
-                    this.vid = document.querySelector("#vid1");
+            //         this.vid = document.querySelector("#vid1");
 
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
+            //         marker.addEventListener("markerFound", function () {
+            //             this.vid.play();
+            //         }.bind(this));
 
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
-            AFRAME.registerComponent("videohandler4", {
-                init: function () {
-                    var marker = this.el;
+            //         marker.addEventListener("markerLost", function () {
+            //             this.vid.pause();
+            //             this.vid.currentTime = 0;
+            //         }.bind(this));
+            //     }
+            // });
+            // AFRAME.registerComponent("videohandler4", {
+            //     init: function () {
+            //         var marker = this.el;
 
-                    this.vid = document.querySelector("#vid1");
+            //         this.vid = document.querySelector("#vid1");
 
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
+            //         marker.addEventListener("markerFound", function () {
+            //             this.vid.play();
+            //         }.bind(this));
 
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
+            //         marker.addEventListener("markerLost", function () {
+            //             this.vid.pause();
+            //             this.vid.currentTime = 0;
+            //         }.bind(this));
+            //     }
+            // });
             AFRAME.registerComponent("videohandler0209", {
                 init: function () {
                     var marker = this.el;
