@@ -65,7 +65,7 @@
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        <a-nft videohandler01 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10" smoothTolerance=".01"
+        <a-nft id="marker01" videohandler01 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
@@ -105,16 +105,20 @@
         window.onload = function () {
             var u = navigator.userAgent;
             var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
-
+            document.getElementById("btnPlay").addEventListener("click", function (e) {
+                    alert("click11")
+                })
             if (isiOS) {
                 alert("掃描成功時可透過按鈕控制影片")
                 document.getElementById("mybuttons").style.display = "flex"
+                
                 AFRAME.registerComponent("videohandler01", {
                     init: function () {
                         var marker = this.el;
 
                         this.vid = document.querySelector("#vid1");
 
+                        if(document.querySelector("#marker01").object3D.visible == true)
                         marker.addEventListener("markerFound", function () {
                             document.getElementById("btnPlay").addEventListener("click", function (e) {
                                 alert("clickplay")
