@@ -29,6 +29,9 @@
         font-size: 1.25em;
         color: white;
     }
+    .buttons{
+        display: none;
+    }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
@@ -73,6 +76,9 @@
 
         <a-entity camera></a-entity>
     </a-scene>
+    <div id="Buttons" class="buttons">
+        <button id="v-play" onclick="">play</button>
+    </div>
     <script>
         // window.addEventListener("click", function () {
         //     playvideo("#vid1")
@@ -81,6 +87,9 @@
             var videoEl_1 = document.querySelector(vidnum);
             videoEl_1.play();
         }
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
+        if (isiOS) document.getElementById("Buttons").style.display = 'flex'
+
         window.onload = function () {
             AFRAME.registerComponent("videohandler01", {
                 init: function () {
@@ -89,7 +98,7 @@
                     this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
-                        this.el.addEventListener("click", function () {
+                        document.getElementById("v-play").addEventListener("click", function () {
                             this.vid.play();
                         });
                         this.vid.play();
