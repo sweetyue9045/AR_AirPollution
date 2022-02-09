@@ -87,6 +87,9 @@
                     this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
+                        window.addEventListener("click", function(e){
+              vid.play();
+          });
                         playvideo(vid1)
                     }.bind(this));
 
