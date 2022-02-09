@@ -43,34 +43,34 @@
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
         <a-nft videohandler1 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid2" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
+            <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
             </a-video>
         </a-nft>
         <a-nft videohandler2 type="nft" url="./data/NFT/02" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid2" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
+            <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
             </a-video>
         </a-nft>
         <a-nft videohandler3 type="nft" url="./data/NFT/03" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid2" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
+            <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
             </a-video>
         </a-nft>
         <a-nft videohandler4 type="nft" url="./data/NFT/04" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid2" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
+            <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
             </a-video>
         </a-nft>
         <a-nft videohandler0209 type="nft" url="./data/NFT/0209" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=152.5 height=135>
+            <a-video src="#vid2" position="50 -200 -100" rotation="-90 0 0" play="true" width=305 height=270>
             </a-video>
         </a-nft>
         <a-assets>
-            <video id="vid1" src="assets/AR 測試2.mp4" preload="auto" autoplay="false" loop="true"
+            <video id="vid2" src="assets/AR 測試2.mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
-            <video id="vid2" src="assets/AR 測試1.mp4" preload="auto" autoplay="false" loop="true"
+            <video id="vid1" src="assets/AR 測試1.mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
         </a-assets>
@@ -83,7 +83,7 @@
                 init: function () {
                     var marker = this.el;
 
-                    this.vid = document.querySelector("#vid2");
+                    this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
                         this.vid.play();
@@ -99,7 +99,7 @@
                 init: function () {
                     var marker = this.el;
 
-                    this.vid = document.querySelector("#vid2");
+                    this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
                         this.vid.play();
@@ -115,7 +115,7 @@
                 init: function () {
                     var marker = this.el;
 
-                    this.vid = document.querySelector("#vid2");
+                    this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
                         this.vid.play();
@@ -131,7 +131,7 @@
                 init: function () {
                     var marker = this.el;
 
-                    this.vid = document.querySelector("#vid2");
+                    this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
                         this.vid.play();
@@ -147,7 +147,7 @@
                 init: function () {
                     var marker = this.el;
 
-                    this.vid = document.querySelector("#vid1");
+                    this.vid = document.querySelector("#vid2");
 
                     marker.addEventListener("markerFound", function () {
                         this.vid.play();
