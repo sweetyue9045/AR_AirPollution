@@ -104,7 +104,7 @@
         var u = navigator.userAgent;
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
         if (isiOS) {
-            alert("掃描成功時可透過按鈕控制影片的開始與暫停")
+            alert("掃描成功時可透過按鈕控制影片")
             document.getElementById("mybuttons").style.display = "flex"
         }
         window.onload = function () {
@@ -112,16 +112,16 @@
                 init: function () {
                     var marker = this.el;
 
-                    this.vid = document.getElementById("vid1");
+                    this.vid = document.querySelector("#vid1");
 
                     if (isiOS) {
                         marker.addEventListener("markerFound", function () {
                             document.getElementById("btnPlay").addEventListener("click", function (e) {
                                 alert("click")
-                                document.getElementById("vid1").play()
+                                this.vid.play()
                             });
                             document.getElementById("btnStop").addEventListener("click", function (e) {
-                                document.getElementById("vid1").pause();
+                                this.vid.pause();
                             });
                         }.bind(this));
                     }
