@@ -40,6 +40,7 @@
         justify-content: center;
         align-items: center;
         z-index: 10;
+        background: blue;
     }
 
     .say-hi-button {
@@ -51,7 +52,6 @@
         width: 4em;
         height: 2em;
         margin: 0.25em;
-        z-index: 100;
     }
 </style>
 
@@ -123,10 +123,10 @@
                                 alert("clickplay")
                                 document.getElementById("vid1").play()
                             });
-                            // document.getElementById("btnStop").addEventListener("click", function (e) {
-                            //     alert("clickstop")
-                            //     document.getElementById("vid1").pause();
-                            // });
+                            document.getElementById("btnStop").addEventListener("click", function (e) {
+                                alert("clickstop")
+                                document.getElementById("vid1").pause();
+                            });
                         }.bind(this));
 
                         marker.addEventListener("markerLost", function () {
