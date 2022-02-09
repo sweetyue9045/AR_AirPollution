@@ -69,7 +69,7 @@
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
         </a-nft>
-        <a-nft videohandler02 type="nft" url="./data/NFT/02" smooth="true" smoothCount="10" smoothTolerance=".01"
+        <!-- <a-nft videohandler02 type="nft" url="./data/NFT/02" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
@@ -83,7 +83,7 @@
             smoothThreshold="5">
             <a-video src="#vid1" position="175 -200 -300" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
-        </a-nft>
+        </a-nft> -->
         <a-nft videohandler0209 type="nft" url="./data/NFT/0209" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid2" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
@@ -106,10 +106,9 @@
             var videoEl_1 = document.querySelector('#' + vidnum);
             videoEl_1.play();
         }
-
+        if (isiOS) alert("this is iphone")
         var u = navigator.userAgent;
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
-        if (isiOS) alert("this is iphone")
         window.onload = function () {
             AFRAME.registerComponent("videohandler01", {
                 init: function () {
@@ -118,17 +117,16 @@
                     this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
-                        document.getElementById("mybuttons").style.display="flex"
-                        
+                        if (isiOS) {
+                            document.getElementById("mybuttons").style.display = "flex"
+                        }
+
                         document.getElementById("btnPlay").addEventListener("click", function (e) {
-                            alert("clickplay")
                             document.getElementById("vid1").play()
 
                         });
                         document.getElementById("btnStop").addEventListener("click", function (e) {
-                            alert("clickstop")
                             document.getElementById("vid1").pause();
-
                         });
                         playvideo(vid1)
                     }.bind(this));
@@ -139,54 +137,54 @@
                     }.bind(this));
                 }
             });
-            AFRAME.registerComponent("videohandler02", {
-                init: function () {
-                    var marker = this.el;
+            // AFRAME.registerComponent("videohandler02", {
+            //     init: function () {
+            //         var marker = this.el;
 
-                    this.vid = document.querySelector("#vid1");
+            //         this.vid = document.querySelector("#vid1");
 
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
+            //         marker.addEventListener("markerFound", function () {
+            //             this.vid.play();
+            //         }.bind(this));
 
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
-            AFRAME.registerComponent("videohandler03", {
-                init: function () {
-                    var marker = this.el;
+            //         marker.addEventListener("markerLost", function () {
+            //             this.vid.pause();
+            //             this.vid.currentTime = 0;
+            //         }.bind(this));
+            //     }
+            // });
+            // AFRAME.registerComponent("videohandler03", {
+            //     init: function () {
+            //         var marker = this.el;
 
-                    this.vid = document.querySelector("#vid1");
+            //         this.vid = document.querySelector("#vid1");
 
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
+            //         marker.addEventListener("markerFound", function () {
+            //             this.vid.play();
+            //         }.bind(this));
 
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
-            AFRAME.registerComponent("videohandler04", {
-                init: function () {
-                    var marker = this.el;
+            //         marker.addEventListener("markerLost", function () {
+            //             this.vid.pause();
+            //             this.vid.currentTime = 0;
+            //         }.bind(this));
+            //     }
+            // });
+            // AFRAME.registerComponent("videohandler04", {
+            //     init: function () {
+            //         var marker = this.el;
 
-                    this.vid = document.querySelector("#vid1");
+            //         this.vid = document.querySelector("#vid1");
 
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
+            //         marker.addEventListener("markerFound", function () {
+            //             this.vid.play();
+            //         }.bind(this));
 
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
+            //         marker.addEventListener("markerLost", function () {
+            //             this.vid.pause();
+            //             this.vid.currentTime = 0;
+            //         }.bind(this));
+            //     }
+            // });
             AFRAME.registerComponent("videohandler0209", {
                 init: function () {
                     var marker = this.el;
