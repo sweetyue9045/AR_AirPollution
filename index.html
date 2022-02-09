@@ -101,9 +101,9 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
-        if (isiOS) alert("this is iphone")
         var u = navigator.userAgent;
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
+        if (isiOS) alert("this is iphone")
 
         window.onload = function () {
             AFRAME.registerComponent("videohandler01", {
@@ -123,10 +123,11 @@
                                 document.getElementById("vid1").currentTime = 0;
                             });
                         }.bind(this));
-
                     }
                     else {
                         marker.addEventListener("markerFound", function () {
+                            document.getElementById("mybuttons").style.display = "flex"
+
                             this.vid.play();
                         }.bind(this));
                     }
