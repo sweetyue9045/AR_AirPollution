@@ -37,8 +37,8 @@
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        <a-nft id="mar01" videohandler01 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10"
-            smoothTolerance=".01" smoothThreshold="5">
+        <a-nft videohandler01 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10" smoothTolerance=".01"
+            smoothThreshold="5">
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
         </a-nft>
@@ -47,7 +47,7 @@
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
         </a-nft>
-        <a-nft videohandler03 type="nft" url="./data/NFT/03" smooth="true" smoothCount="10" smoothTolerance=".01"
+         <a-nft videohandler03 type="nft" url="./data/NFT/03" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid1" position="100 -200 -150" rotation="-90 0 0" play="true" width=200 height=200>
             </a-video>
@@ -75,39 +75,22 @@
     </a-scene>
     <script>
         window.onload = function () {
-            AFRAME.registerComponent('vidhandler01', {
+            AFRAME.registerComponent("videohandler01", {
                 init: function () {
-                    this.toggle = false;
-                    document.querySelector("#vid1").pause(); //reference to the video
-                },
-                tick: function () {
-                    if (document.querySelector("#mar01").object3D.visible == true) {
-                        if (!this.toggle) {
-                            this.toggle = true;
-                            document.querySelector("#vid1").play();
-                        }
-                    } else {
-                        this.toggle = false;
-                        document.querySelector("#vid1").pause();
-                    }
+                    var marker = this.el;
+
+                    this.vid = document.querySelector("#vid1");
+
+                    marker.addEventListener("markerFound", function () {
+                        this.vid.play();
+                    }.bind(this));
+
+                    marker.addEventListener("markerLost", function () {
+                        this.vid.pause();
+                        this.vid.currentTime = 0;
+                    }.bind(this));
                 }
             });
-            // AFRAME.registerComponent("videohandler01", {
-            //     init: function () {
-            //         var marker = this.el;
-
-            //         this.vid = document.querySelector("#vid1");
-
-            //         marker.addEventListener("markerFound", function () {
-            //             this.vid.play();
-            //         }.bind(this));
-
-            //         marker.addEventListener("markerLost", function () {
-            //             this.vid.pause();
-            //             this.vid.currentTime = 0;
-            //         }.bind(this));
-            //     }
-            // });
             AFRAME.registerComponent("videohandler02", {
                 init: function () {
                     var marker = this.el;
