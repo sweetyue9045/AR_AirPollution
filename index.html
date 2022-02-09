@@ -64,7 +64,7 @@
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        <a-nft id="marker01" videohandler01 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10" smoothTolerance=".01"
+        <a-nft videohandler01 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
@@ -110,49 +110,31 @@
                 document.getElementById("mybuttons").style.display = "flex"
 
                 AFRAME.registerComponent("videohandler01", {
+                    
+                    
                     init: function () {
-                        this.marker = document.querySelector("#marker01")
-                        this.markerVisible = false
-                    },
-                    tick: function () {
-                        // if (!this.marker) return
-                        if (this.marker.object3D.visible) {
+                        var marker = this.el;
+
+                        this.vid = document.querySelector("#vid1");
+                        document.getElementById("mybuttons").style.display = "flex"
+
+                        marker.addEventListener("markerFound", function () {
                             alert("A")
-                            // if (!this.markerVisible) {
-                            //     // marker detected
-                            //     this.markerVisible = true
-                            // }
-                        } else {
-                            alert("B")
-                            // if (this.markerVisbile) {
-                            //     // lost sight of the marker
-                            //     this.markerVisible = false
-                            // }
-                        }
+                            document.getElementById("btnPlay").addEventListener("click", function (e) {
+                                alert("clickplay")
+                                document.getElementById("vid1").play()
+                            });
+                            document.getElementById("btnStop").addEventListener("click", function (e) {
+                                alert("clickstop")
+                                document.getElementById("vid1").pause();
+                            });
+                        }.bind(this));
+
+                        marker.addEventListener("markerLost", function () {
+                            this.vid.pause();
+                            this.vid.currentTime = 0;
+                        }.bind(this));
                     }
-
-                //     init: function () {
-                //         var marker = this.el;
-
-                //         this.vid = document.querySelector("#vid1");
-
-                //         marker.addEventListener("markerFound", function () {
-                //             alert("A")
-                //             document.getElementById("btnPlay").addEventListener("click", function (e) {
-                //                 alert("clickplay")
-                //                 document.getElementById("vid1").play()
-                //             });
-                //             document.getElementById("btnStop").addEventListener("click", function (e) {
-                //                 alert("clickstop")
-                //                 document.getElementById("vid1").pause();
-                //             });
-                //         }.bind(this));
-
-                //         marker.addEventListener("markerLost", function () {
-                //             this.vid.pause();
-                //             this.vid.currentTime = 0;
-                //         }.bind(this));
-                //     }
                 });
             }
             else {
