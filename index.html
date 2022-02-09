@@ -47,7 +47,7 @@
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
         </a-nft>
-         <a-nft videohandler03 type="nft" url="./data/NFT/03" smooth="true" smoothCount="10" smoothTolerance=".01"
+        <a-nft videohandler03 type="nft" url="./data/NFT/03" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid1" position="100 -200 -150" rotation="-90 0 0" play="true" width=200 height=200>
             </a-video>
@@ -74,6 +74,11 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
+
+        function playvideo(vidnum) {
+            var videoEl_1 = document.querySelector('#' + vidnum);
+            videoEl_1.play();
+        }
         window.onload = function () {
             AFRAME.registerComponent("videohandler01", {
                 init: function () {
@@ -82,7 +87,7 @@
                     this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
-                        this.vid.play();
+                        playvideo(vid1)
                     }.bind(this));
 
                     marker.addEventListener("markerLost", function () {
