@@ -41,7 +41,7 @@
             smoothThreshold="5">
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
-        <!-- </a-nft>
+            <!-- </a-nft>
         <a-nft videohandler02 type="nft" url="./data/02" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid1" position="100 -200 -250" rotation="-90 0 0" play="true" width=300 height=300>
@@ -57,23 +57,27 @@
             <a-video src="#vid1" position="175 -200 -300" rotation="-90 0 0" play="true" width=300 height=300>
             </a-video>
         </a-nft> -->
-        <a-nft videohandler0209 type="nft" url="./data/0209" smooth="true" smoothCount="10" smoothTolerance=".01"
-            smoothThreshold="5">
-            <a-video src="#vid2" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
-            </a-video>
-        </a-nft>
-        <a-assets>
-            <video id="vid2" src="assets/AR 測試2.mp4" preload="auto" autoplay="false" loop="true"
-                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
-            </video>
-            <video id="vid1" src="assets/AR 測試1.mp4" preload="auto" autoplay="false" loop="true"
-                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
-            </video>
-        </a-assets>
+            <a-nft videohandler0209 type="nft" url="./data/0209" smooth="true" smoothCount="10" smoothTolerance=".01"
+                smoothThreshold="5">
+                <a-video src="#vid2" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
+                </a-video>
+            </a-nft>
+            <a-assets>
+                <video id="vid2" src="assets/AR 測試2.mp4" preload="auto" autoplay="false" loop="true"
+                    response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
+                </video>
+                <video id="vid1" src="assets/AR 測試1.mp4" preload="auto" autoplay="false" loop="true"
+                    response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
+                </video>
+            </a-assets>
 
-        <a-entity camera></a-entity>
+            <a-entity camera></a-entity>
     </a-scene>
     <script>
+        var u = navigator.userAgent;
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
+        if(isiOS) alert("ios")
+        else alert("android")
         window.onload = function () {
             AFRAME.registerComponent("videohandler01", {
                 init: function () {
