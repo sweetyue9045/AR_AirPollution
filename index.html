@@ -58,9 +58,29 @@
     <div class="arjs-loader">
         <div>Loading, please wait...</div>
     </div>
-    <div class="buttons" id="mybuttons">
-        <button id="btnPlay" class="say-hi-button">開始</button>
-        <button id="btnStop" class="say-hi-button">暫停</button>
+    <div class="buttons01" id="mybuttons">
+        <button id="btnPlay01" class="say-hi-button">開始</button>
+        <button id="btnStop01" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons02" id="mybuttons">
+        <button id="btnPlay02" class="say-hi-button">開始</button>
+        <button id="btnStop02" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons03" id="mybuttons">
+        <button id="btnPlay03" class="say-hi-button">開始</button>
+        <button id="btnStop03" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons04" id="mybuttons">
+        <button id="btnPlay04" class="say-hi-button">開始</button>
+        <button id="btnStop04" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons05" id="mybuttons">
+        <button id="btnPlay05" class="say-hi-button">開始</button>
+        <button id="btnStop05" class="say-hi-button">暫停</button>
+    </div>
+    <div class="buttons06" id="mybuttons">
+        <button id="btnPlay06" class="say-hi-button">開始</button>
+        <button id="btnStop06" class="say-hi-button">暫停</button>
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
@@ -109,9 +129,7 @@
             videoEl_1.play();
         }
 
-        window.addEventListener("click", function () {
-            document.getElementById("vid1").play()
-        });
+
         document.getElementById("btnPlay").addEventListener("click", function (e) {
             alert("clickplay")
             document.getElementById("vid1").play()
@@ -119,7 +137,6 @@
         window.onload = function () {
 
             if (isiOS) {
-                alert("掃描成功時可透過按鈕控制影片")
                 document.getElementById("mybuttons").style.display = "flex"
             }
 
