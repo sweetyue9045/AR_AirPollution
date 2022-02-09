@@ -112,6 +112,10 @@
         window.addEventListener("click", function () {
             document.getElementById("vid1").play()
         });
+        document.getElementById("btnPlay").addEventListener("click", function (e) {
+            alert("clickplay")
+            document.getElementById("vid1").play()
+        });
         window.onload = function () {
 
             if (isiOS) {
