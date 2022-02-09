@@ -128,8 +128,9 @@
 
                         marker.addEventListener("markerFound", function () {
                             this.vid.play();
+                        }.bind(this));
+                        marker.addEventListener("markerFound", function () {
                             document.getElementById("mybuttons").style.display = "flex"
-
                         }.bind(this));
                     }
                     marker.addEventListener("markerLost", function () {
