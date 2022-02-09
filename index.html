@@ -29,16 +29,6 @@
         font-size: 1.25em;
         color: white;
     }
-    .buttons{
-        width: 100%;
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 9999;
-        justify-content: center;
-        align-items: center;
-    }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
@@ -83,21 +73,12 @@
 
         <a-entity camera></a-entity>
     </a-scene>
-    <div id="Buttons" class="buttons">
-        <button id="v-play" onclick="">play</button>
-    </div>
     <script>
-        // window.addEventListener("click", function () {
-        //     playvideo("#vid1")
-        // });
+
         function playvideo(vidnum) {
-            var videoEl_1 = document.querySelector(vidnum);
+            var videoEl_1 = document.querySelector('#' + vidnum);
             videoEl_1.play();
         }
-        var u = navigator.userAgent;
-        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
-        if (isiOS) alert("yes")
-
         window.onload = function () {
             AFRAME.registerComponent("videohandler01", {
                 init: function () {
@@ -106,10 +87,7 @@
                     this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
-                        document.getElementById("v-play").addEventListener("click", function () {
-                            this.vid.play();
-                        });
-                        this.vid.play();
+                        playvideo(vid1)
                     }.bind(this));
 
                     marker.addEventListener("markerLost", function () {
