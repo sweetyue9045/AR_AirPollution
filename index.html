@@ -125,8 +125,9 @@
                         }.bind(this));
                     }
                     else {
+                        document.getElementById("mybuttons").style.display = "flex"
+
                         marker.addEventListener("markerFound", function () {
-                            document.getElementById("mybuttons").style.display = "flex"
 
                             this.vid.play();
                         }.bind(this));
