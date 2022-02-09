@@ -59,7 +59,7 @@
         <div>Loading, please wait...</div>
     </div>
     <div class="buttons" id="mybuttons">
-        <button id="btnPlay" class="say-hi-button">開始</button>
+        <button id="btnPlay" class="say-hi-button" onclick="playvideo(vid1)">開始</button>
         <button id="btnStop" class="say-hi-button">暫停</button>
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
@@ -103,6 +103,11 @@
     <script>
         var u = navigator.userAgent;
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
+
+        function playvideo(vidnum) {
+            var videoEl_1 = document.querySelector('#' + vidnum);
+            videoEl_1.play();
+        }
         window.onload = function () {
 
             if (isiOS) {
