@@ -87,7 +87,10 @@
                     this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
-                        playvideo(vid1)
+                        playvideo("vid1")
+                        // window.addEventListener("click", function (e) {
+                            
+                        // });
                     }.bind(this));
 
                     marker.addEventListener("markerLost", function () {
