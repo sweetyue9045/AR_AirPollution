@@ -74,27 +74,9 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
-        window.addEventListener('click', function () {
-  var v = document.querySelector('#vid1');
-  v.play();
-});
         window.onload = function () {
             AFRAME.registerComponent("videohandler01", {
                 init: function () {
-                    var marker = this.el;
-
-                    this.vid = document.querySelector("#vid1");
-
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
-
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                },
-                tick: function () {
                     var marker = this.el;
 
                     this.vid = document.querySelector("#vid1");
