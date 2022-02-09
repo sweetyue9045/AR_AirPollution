@@ -125,11 +125,11 @@
                         }.bind(this));
                     }
                     else {
-                        document.getElementById("mybuttons").style.display = "flex"
 
                         marker.addEventListener("markerFound", function () {
-
                             this.vid.play();
+                            document.getElementById("mybuttons").style.display = "flex"
+
                         }.bind(this));
                     }
                     marker.addEventListener("markerLost", function () {
