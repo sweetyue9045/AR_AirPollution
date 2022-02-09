@@ -31,25 +31,25 @@
     }
 
     .buttons {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 5em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
     }
 
     .say-hi-button {
-      padding: 0.25em;
-      border-radius: 4px;
-      border: none;
-      background: white;
-      color: black;
-      width: 4em;
-      height: 2em;
+        padding: 0.25em;
+        border-radius: 4px;
+        border: none;
+        background: white;
+        color: black;
+        width: 4em;
+        height: 2em;
     }
 </style>
 
@@ -57,9 +57,10 @@
     <div class="arjs-loader">
         <div>Loading, please wait...</div>
     </div>
-    <div class="buttons">
-        <button class="say-hi-button">SAY HI!</button>
-      </div>
+    <div class="buttons" id="mybuttons">
+        <button id="btnPlay" class="say-hi-button">PLAY</button>
+        <button id="btnStop" class="say-hi-button">STOP</button>
+    </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
         <a-nft videohandler01 type="nft" url="./data/NFT/01" smooth="true" smoothCount="10" smoothTolerance=".01"
@@ -116,9 +117,12 @@
                     this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
-                        window.addEventListener("click", function(e){
-              vid.play();
-          });
+                        document.querySelector("#btnPlay").addEventListener("click", function (e) {
+                            vid.play();
+                        });
+                        document.querySelector("#btnStop").addEventListener("click", function (e) {
+                            vid.pause();
+                        });
                         playvideo(vid1)
                     }.bind(this));
 
