@@ -127,11 +127,13 @@
                         });
                         document.getElementById("btnStop").addEventListener("click", function (e) {
                             document.getElementById("vid1").pause();
+                            document.getElementById("vid1").currentTime = 0;
                         });
                         playvideo(vid1)
                     }.bind(this));
 
                     marker.addEventListener("markerLost", function () {
+                        document.getElementById("mybuttons").style.display = "none"
                         this.vid.pause();
                         this.vid.currentTime = 0;
                     }.bind(this));
