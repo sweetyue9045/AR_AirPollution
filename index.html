@@ -64,10 +64,10 @@
         </a-nft>
         <a-assets>
             <video id="vid2" src="assets/AR 測試2.mp4" preload="auto" autoplay="false" loop="true"
-                response-type="arraybuffer" crossorigin webkit-playsinline playsinline controls>
+                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
             <video id="vid1" src="assets/AR 測試1.mp4" preload="auto" autoplay="false" loop="true"
-                response-type="arraybuffer" crossorigin webkit-playsinline playsinline controls>
+                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
         </a-assets>
 
@@ -79,7 +79,7 @@
                 init: function () {
                     var marker = this.el;
 
-                    this.vid = document.querySelector("#vid1");
+                    this.vid = document.getElementById("vid1");
 
                     marker.addEventListener("markerFound", function () {
                         this.vid.play();
