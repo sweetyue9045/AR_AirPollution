@@ -97,18 +97,11 @@
             });
             AFRAME.registerComponent("videohandler2", {
                 init: function () {
-
                     this.el.sceneEl.addEventListener("markerFound", function () {
                         document.getElementById("vid11").style.display="block";
-
-                        // document.querySelector("#vid2").play();
                     }.bind(this));
-
                     this.el.sceneEl.addEventListener("markerLost", function () {
                         document.getElementById("vid11").style.display="none";
-
-                        // document.querySelector("#vid2").pause();
-                        // document.querySelector("#vid2").currentTime = 0;
                     }.bind(this));
                 }
             });
