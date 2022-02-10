@@ -104,15 +104,15 @@
         var u = navigator.userAgent;
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
         window.onload = function () {
-            if (isiOS) {
-                alert("掃描成功時可透過按鈕控制影片")
-                document.getElementById("mybuttons").style.display = "flex"
-                AFRAME.registerComponent("videohandler01", {
-                    init: function () {
-                        var marker = this.el;
 
-                        this.vid = document.querySelector("#vid1");
+            // alert("掃描成功時可透過按鈕控制影片")
+            document.getElementById("mybuttons").style.display = "flex"
+            AFRAME.registerComponent("videohandler01", {
+                init: function () {
+                    var marker = this.el;
 
+                    this.vid = document.querySelector("#vid1");
+                    if (isiOS) {
                         marker.addEventListener("markerFound", function () {
                             document.getElementById("btnPlay").addEventListener("click", function (e) {
                                 this.vid.play()
@@ -121,32 +121,18 @@
                                 this.vid.pause();
                             });
                         }.bind(this));
-
-                        marker.addEventListener("markerLost", function () {
-                            this.vid.pause();
-                            this.vid.currentTime = 0;
-                        }.bind(this));
                     }
-                });
-            }
-            else {
-                AFRAME.registerComponent("videohandler01", {
-                    init: function () {
-                        var marker = this.el;
-
-                        this.vid = document.querySelector("#vid1");
-
+                    else {
                         marker.addEventListener("markerFound", function () {
                             this.vid.play();
                         }.bind(this));
-                        marker.addEventListener("markerLost", function () {
-                            this.vid.pause();
-                            this.vid.currentTime = 0;
-                        }.bind(this));
                     }
-                });
-            }
-
+                    marker.addEventListener("markerLost", function () {
+                        this.vid.pause();
+                        this.vid.currentTime = 0;
+                    }.bind(this));
+                }
+            });
             // AFRAME.registerComponent("videohandler02", {
             //     init: function () {
             //         var marker = this.el;
