@@ -55,6 +55,12 @@
             </a-video>
         </a-nft>
 
+        <a-nft videohandler0209 type="nft" url="./data/0209" smooth="true" smoothCount="10" smoothTolerance=".01"
+            smoothThreshold="5">
+            <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
+            </a-video>
+        </a-nft>
+
         <a-assets>
             <video id="vid1" src="assets/ordeal_game.mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
@@ -121,6 +127,22 @@
                     var marker = this.el;
 
                     this.vid = document.querySelector("#vid2");
+
+                    marker.addEventListener("markerFound", function () {
+                        this.vid.play();
+                    }.bind(this));
+
+                    marker.addEventListener("markerLost", function () {
+                        this.vid.pause();
+                        this.vid.currentTime = 0;
+                    }.bind(this));
+                }
+            });
+            AFRAME.registerComponent("videohandler0209", {
+                init: function () {
+                    var marker = this.el;
+
+                    this.vid = document.querySelector("#vid1");
 
                     marker.addEventListener("markerFound", function () {
                         this.vid.play();
