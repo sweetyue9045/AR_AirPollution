@@ -91,6 +91,7 @@
                     this.vid = document.querySelector("#vid2");
 
                     marker.addEventListener("markerFound", function () {
+                        alert("A")
                         this.vid.play();
                     }.bind(this));
 
