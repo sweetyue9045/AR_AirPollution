@@ -29,38 +29,11 @@
         font-size: 1.25em;
         color: white;
     }
-
-    .buttons {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 5em;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-    }
-
-    .say-hi-button {
-        padding: 0.25em;
-        border-radius: 4px;
-        border: none;
-        background: white;
-        color: black;
-        width: 4em;
-        height: 2em;
-        margin: 0.25em;
-    }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
     <div class="arjs-loader">
         <div>Loading, please wait...</div>
-    </div>
-    <div class="buttons" id="mybuttons">
-        <button id="btnPlay" class="say-hi-button">開始</button>
-        <button id="btnStop" class="say-hi-button">暫停</button>
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
@@ -101,32 +74,21 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
-        var u = navigator.userAgent;
-        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
+        // var u = navigator.userAgent;
+        // var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios終端
         window.onload = function () {
 
             // alert("掃描成功時可透過按鈕控制影片")
-            document.getElementById("mybuttons").style.display = "flex"
+            // document.getElementById("mybuttons").style.display = "flex"
             AFRAME.registerComponent("videohandler01", {
                 init: function () {
                     var marker = this.el;
 
                     this.vid = document.querySelector("#vid1");
-                    if (isiOS) {
-                        marker.addEventListener("markerFound", function () {
-                            document.getElementById("btnPlay").addEventListener("click", function (e) {
-                                this.vid.play()
-                            });
-                            document.getElementById("btnStop").addEventListener("click", function (e) {
-                                this.vid.pause();
-                            });
-                        }.bind(this));
-                    }
-                    else {
-                        marker.addEventListener("markerFound", function () {
-                            this.vid.play();
-                        }.bind(this));
-                    }
+                    
+                    marker.addEventListener("markerFound", function () {
+                        this.vid.play();
+                    }.bind(this));
                     marker.addEventListener("markerLost", function () {
                         this.vid.pause();
                         this.vid.currentTime = 0;
