@@ -72,18 +72,14 @@
         background-image: url(https://img.lovepik.com/element/40125/0624.png_300.png);
     }
 
-    .btnim {
-        height: 100%;
-    }
-
     .buttons {
         padding: 0.25em;
-        border-radius: 2em;
+        border-radius: 4em;
         border: none;
         background: white;
         color: black;
-        width: 2em;
-        height: 2em;
+        width: 4em;
+        height: 4em;
         margin: 0.25em;
     }
 
@@ -125,11 +121,9 @@
         <input type="button" onclick="revideo('vid1')" class="buttons btn-restart">
     </div>
     <div class="buttongroup mybuttons" id="mybuttons-02">
-        <button class="buttons" onclick="playvideo('vid2')">貓貓開始</button>
-        <button class="buttons" onclick="pausevideo('vid2')">
-            <img class="btnim" src="https://cdn-icons-png.flaticon.com/512/61/61039.png">
-        </button>
-        <button class="buttons" onclick="revideo('vid2')">貓貓重頭</button>
+        <input type="button" onclick="playvideo('vid2')" class="buttons btn-play">
+        <input type="button" onclick="pausevideo('vid2')" class="buttons btn-pause">
+        <input type="button" onclick="revideo('vid2')" class="buttons btn-restart">
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
