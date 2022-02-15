@@ -7,7 +7,7 @@
 
     <script src="js/aframe-master.min.js"></script>
     <script src="js/aframe-ar-nft.js"></script>
-    
+
 </head>
 
 <style>
@@ -52,6 +52,7 @@
     }
 
     #mybuttongroup .btn-radio {
+        -webkit-tap-highlight-color: transparent;
         display: inline-block;
         text-align: center;
         line-height: 2.5em;
@@ -116,9 +117,17 @@
     </div>
     <div class="buttongroup" id="mybuttongroup">
         <label><input type="radio" name="label" value="01" onclick="videocheck()" checked="checked">
-            <span class="btn-radio"></span></label>
+            <span class="btn-radio">貓貓</span></label>
         <label><input type="radio" name="label" value="02" onclick="videocheck()">
-            <span class="btn-radio"></span></label>
+            <span class="btn-radio">先放</span></label>
+        <label><input type="radio" name="label" value="03" onclick="videocheck()" checked="checked">
+            <span class="btn-radio">先放</span></label>
+        <label><input type="radio" name="label" value="04" onclick="videocheck()">
+            <span class="btn-radio">先放</span></label>
+        <label><input type="radio" name="label" value="05" onclick="videocheck()" checked="checked">
+            <span class="btn-radio">先放</span></label>
+        <label><input type="radio" name="label" value="06" onclick="videocheck()">
+            <span class="btn-radio">先放</span></label>
     </div>
     <div class="buttongroup mybuttons" id="mybuttons-01">
         <input type="button" onclick="playvideo('vid1')" class="buttons btn-play">
@@ -130,18 +139,31 @@
         <input type="button" onclick="pausevideo('vid2')" class="buttons btn-pause">
         <input type="button" onclick="revideo('vid2')" class="buttons btn-restart">
     </div>
+    <div class="buttongroup mybuttons" id="mybuttons-03">
+        <input type="button" onclick="playvideo('vid3')" class="buttons btn-play">
+        <input type="button" onclick="pausevideo('vid3')" class="buttons btn-pause">
+        <input type="button" onclick="revideo('vid3')" class="buttons btn-restart">
+    </div>
+    <div class="buttongroup mybuttons" id="mybuttons-04">
+        <input type="button" onclick="playvideo('vid4')" class="buttons btn-play">
+        <input type="button" onclick="pausevideo('vid4')" class="buttons btn-pause">
+        <input type="button" onclick="revideo('vid4')" class="buttons btn-restart">
+    </div>
+    <div class="buttongroup mybuttons" id="mybuttons-05">
+        <input type="button" onclick="playvideo('vid5')" class="buttons btn-play">
+        <input type="button" onclick="pausevideo('vid5')" class="buttons btn-pause">
+        <input type="button" onclick="revideo('vid5')" class="buttons btn-restart">
+    </div>
+    <div class="buttongroup mybuttons" id="mybuttons-06">
+        <input type="button" onclick="playvideo('vid6')" class="buttons btn-play">
+        <input type="button" onclick="pausevideo('vid6')" class="buttons btn-pause">
+        <input type="button" onclick="revideo('vid6')" class="buttons btn-restart">
+    </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        <!-- <a-nft videohandler01 type="nft" url="./data/02099" smooth="true" smoothCount="10" smoothTolerance=".01"
-            smoothThreshold="5">
-            <a-video src="#vid1" position="0 -400 0" rotation="-90 0 0" play="true" width=122 height=108>
-            </a-video>
-        </a-nft> -->
-
         <a-nft videohandler0209 type="nft" url="./data/0209" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid2" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5
-                height=405>
+            <a-video src="#vid1" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
             </a-video>
         </a-nft>
 
@@ -181,11 +203,24 @@
                 vids[i].currentTime = 0;
             }
             if (label == "01") {
-                console.log(label); document.getElementById("mybuttons-01").style.display = "flex";
+                document.getElementById("mybuttons-01").style.display = "flex";
             }
             else if (label == "02") {
-                console.log(label); document.getElementById("mybuttons-02").style.display = "flex";
+                document.getElementById("mybuttons-02").style.display = "flex";
             }
+            else if (label == "03") {
+                document.getElementById("mybuttons-03").style.display = "flex";
+            }
+            else if (label == "04") {
+                document.getElementById("mybuttons-04").style.display = "flex";
+            }
+            else if (label == "05") {
+                document.getElementById("mybuttons-05").style.display = "flex";
+            }
+            else if (label == "06") {
+                document.getElementById("mybuttons-06").style.display = "flex";
+            }
+
         }
         window.onload = function () {
             videocheck();
