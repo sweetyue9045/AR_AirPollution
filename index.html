@@ -2,9 +2,12 @@
 <html>
 
 <head>
-    <script
-        src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0'>
+    <title>ARWeb</title>
+
+    <script src="js/aframe-master.min.js"></script>
+    <script src="js/aframe-ar-nft.js"></script>
 </head>
 
 <style>
@@ -26,29 +29,117 @@
         font-size: 1.25em;
         color: white;
     }
+
+    .buttongroup {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5em;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+    }
+
+    #mybuttongroup {
+        display: flex;
+        bottom: 50px;
+    }
+
+    #mybuttongroup input[type="radio"] {
+        display: none;
+    }
+
+    #mybuttongroup .btn-radio {
+        border-radius: 10px;
+        display: inline-block;
+        margin: 0.25em;
+        padding: 0px 15px;
+        background: #f7f7f7;
+        color: #333;
+        cursor: pointer;
+        background-size: cover;
+        background-position: center;
+        background-image: url(https://img95.699pic.com/element/40155/7210.png_300.png);
+    }
+
+    #mybuttongroup input:checked+.btn-radio {
+        background: #5e7380;
+        color: #fff;
+        cursor: default;
+        background-size: cover;
+        background-position: center;
+        background-image: url(https://img.lovepik.com/element/40125/0624.png_300.png);
+    }
+
+    .btnim {
+        height: 100%;
+    }
+
+    .buttons {
+        padding: 0.25em;
+        border-radius: 2em;
+        border: none;
+        background: white;
+        color: black;
+        width: 2em;
+        height: 2em;
+        margin: 0.25em;
+    }
+
+    .btn-play {
+        background: url("https://img.ixintu.com/upload/jpg/20210523/fd2d1fb2c7390065399cf43dfbaab16a_23311_512_512.jpg!ys");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .btn-pause {
+        background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnmdpbbLPrixyKL8PuGxqr_7Lg1uNeRAz7vA&usqp=CAU");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .btn-restart {
+        background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5VoZOJ9Nq0K2UDvJNQDBF1zYnwKLS6LaONw&usqp=CAU");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
     <div class="arjs-loader">
         <div>Loading, please wait...</div>
     </div>
-     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
+    <div class="buttongroup" id="mybuttongroup">
+        <label><input type="radio" name="label" value="01" onclick="videocheck()" checked="checked">
+            <span class="btn-radio">黑白</span></label>
+        <label><input type="radio" name="label" value="02" onclick="videocheck()">
+            <span class="btn-radio">貓貓</span></label>
+    </div>
+    <div class="buttongroup mybuttons" id="mybuttons-01">
+        <input type="button" onclick="playvideo('vid1')" class="buttons btn-play">
+        <input type="button" onclick="pausevideo('vid1')" class="buttons btn-pause">
+        <input type="button" onclick="revideo('vid1')" class="buttons btn-restart">
+    </div>
+    <div class="buttongroup mybuttons" id="mybuttons-02">
+        <button class="buttons" onclick="playvideo('vid2')">貓貓開始</button>
+        <button class="buttons" onclick="pausevideo('vid2')">
+            <img class="btnim" src="https://cdn-icons-png.flaticon.com/512/61/61039.png">
+        </button>
+        <button class="buttons" onclick="revideo('vid2')">貓貓重頭</button>
+    </div>
+    <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        <a-nft videohandler1 type="nft" url="./data/01" smooth="true" smoothCount="10" smoothTolerance=".01"
+        <a-nft videohandler01 type="nft" url="./data/01" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=300 height=200>
+            <a-video src="#vid1" position="150 -200 -300" rotation="-90 0 0" play="true" width=288 height=198>
             </a-video>
         </a-nft>
-        <a-nft videohandler2 type="nft" url="./data/02" smooth="true" smoothCount="10" smoothTolerance=".01"
-            smoothThreshold="5">
-            <a-video src="#vid2" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
-            </a-video>
-        </a-nft>
-        <a-nft videohandler3 type="nft" url="./data/03" smooth="true" smoothCount="10" smoothTolerance=".01"
-            smoothThreshold="5">
-            <a-video src="#vid2" position="50 -200 -100" rotation="-90 0 0" play="true" width=150 height=150>
-            </a-video>
-        </a-nft>
+
         <a-nft videohandler0209 type="nft" url="./data/0209" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid2" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
@@ -56,10 +147,10 @@
         </a-nft>
 
         <a-assets>
-            <video id="vid1" src="assets/ordeal_game.mp4" preload="auto" autoplay="false" loop="true"
+            <video class="myvid" id="vid1" src="assets/AR_Test 01.mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
-            <video id="vid2" src="assets/AR_Test 02.mp4" preload="auto" autoplay="false" loop="true"
+            <video class="myvid" id="vid2" src="assets/AR_Test 02.mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
         </a-assets>
@@ -67,71 +158,38 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
+        function playvideo(vidnum) {
+            var videoEl_1 = document.querySelector('#' + vidnum);
+            videoEl_1.play();
+        }
+        function pausevideo(vidnum) {
+            var videoEl_1 = document.querySelector('#' + vidnum);
+            videoEl_1.pause();
+        }
+        function revideo(vidnum) {
+            var videoEl_1 = document.querySelector('#' + vidnum);
+            videoEl_1.currentTime = 0;
+        }
+        function videocheck() {
+            var label = document.querySelector('input[name = "label"]:checked').value;
+            var lists = document.querySelectorAll(".mybuttons")
+            for (i = 0; i < lists.length; ++i) {
+                lists[i].style.display = "none";
+            }
+            var vids = document.querySelectorAll(".myvid")
+            for (i = 0; i < vids.length; ++i) {
+                vids[i].pause();
+                vids[i].currentTime = 0;
+            }
+            if (label == "01") {
+                console.log(label); document.getElementById("mybuttons-01").style.display = "flex";
+            }
+            else if (label == "02") {
+                console.log(label); document.getElementById("mybuttons-02").style.display = "flex";
+            }
+        }
         window.onload = function () {
-            AFRAME.registerComponent("videohandler1", {
-                init: function () {
-                    var marker = this.el;
-
-                    this.vid = document.querySelector("#vid1");
-
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
-
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
-            AFRAME.registerComponent("videohandler2", {
-                init: function () {
-                    var marker = this.el;
-
-                    this.vid = document.querySelector("#vid2");
-
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
-
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
-            AFRAME.registerComponent("videohandler3", {
-                init: function () {
-                    var marker = this.el;
-
-                    this.vid = document.querySelector("#vid2");
-
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
-
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
-            AFRAME.registerComponent("videohandler0209", {
-                init: function () {
-                    var marker = this.el;
-
-                    this.vid = document.querySelector("#vid2");
-
-                    marker.addEventListener("markerFound", function () {
-                        this.vid.play();
-                    }.bind(this));
-
-                    marker.addEventListener("markerLost", function () {
-                        this.vid.pause();
-                        this.vid.currentTime = 0;
-                    }.bind(this));
-                }
-            });
+            videocheck();
         };
     </script>
 </body>
