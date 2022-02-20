@@ -136,7 +136,7 @@
         </a-nft>
         <a-nft type="nft" url="./data/P18_AR_02" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid_P18" position="50 -200 -50" rotation="-90 0 0" play="true" width=125 height=125>
+            <a-video src="#vid_P18" position="25 -200 -150" rotation="-90 0 0" play="true" width=125 height=125>
             </a-video>
         </a-nft>
         <a-nft type="nft" url="./data/P21_AR_03" smooth="true" smoothCount="10" smoothTolerance=".01"
@@ -161,8 +161,8 @@
             <video class="myvid" id="vid_P18" src="assets/P18_AR_02.mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
-            <video class="myvid" id="vid_P21" src="assets/P18_AR_02 (960_960).mp4" preload="auto" autoplay="false" loop="true"
-                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
+            <video class="myvid" id="vid_P21" src="assets/P18_AR_02 (960_960).mp4" preload="auto" autoplay="false"
+                loop="true" response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
             <video class="myvid" id="vid_P25" src="assets/P25_AR_04.mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
@@ -209,6 +209,38 @@
         window.onload = function () {
             document.getElementById("mybuttongroup").style.display = "flex";
             videocheck();
+            getLocation();
         };
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+            console.log(latlon)
+        }
+        //To use this code on your website, get a free API key from Google.
+        //Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred."
+                    break;
+            }
+        }
     </script>
 </body>
