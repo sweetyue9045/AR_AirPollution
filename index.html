@@ -175,6 +175,10 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
+        var county = "";
+        var AllData = "";
+        const countyData = [];
+
         function playvideo(vidnum) {
             var videoEl_1 = document.querySelector('#' + vidnum);
             videoEl_1.play();
@@ -220,9 +224,6 @@
         }
         function showPosition(position) {
             var latlon = position.coords.latitude + "," + position.coords.longitude;
-            var county = "";
-            var AllData = "";
-            const countyData = [];
 
             console.log(latlon)
             fetch("https://api.nlsc.gov.tw/other/TownVillagePointQuery/" + position.coords.longitude + "/" + position.coords.latitude + "/4326")
@@ -236,12 +237,16 @@
                 .then(jsonData => {
                     let myjson = JSON.parse(jsonData);
                     county = myjson.townVillageItem.ctyName
-                    console.log(county)
+                    alert("所在地："+county)
+                    useData()
                 })
                 .catch((err) => {
                     console.log('錯誤:', err);
                 });
+        }
 
+
+        function useData() {
             fetch("https://data.epa.gov.tw/api/v1/aqx_p_432?limit=1000&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&sort=ImportDate%20desc&format=json")
                 .then(function (response) {
                     return response.json();
@@ -252,13 +257,15 @@
                         if (data.County === county) {
                             countyData.push(data)
                         }
-                        console.log(countyData)
                     })
+                    console.log(countyData)
                 })
                 .catch((err) => {
                     console.log('錯誤:', err);
                 });
+
         }
+
 
         //To use this code on your website, get a free API key from Google.
         //Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
