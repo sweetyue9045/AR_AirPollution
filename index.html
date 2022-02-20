@@ -11,6 +11,8 @@
 </head>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
     .arjs-loader {
         height: 100%;
         width: 100%;
@@ -53,6 +55,7 @@
     #mybuttongroup .btn-radio {
         -webkit-tap-highlight-color: transparent;
         display: inline-block;
+        font-family: 'Permanent Marker', cursive;
         text-align: center;
         line-height: 2.5em;
         border-radius: 2.5em;
@@ -64,7 +67,6 @@
         cursor: pointer;
         background-size: cover;
         background-position: center;
-        /* background-image: url(https://img95.699pic.com/element/40155/7210.png_300.png); */
     }
 
     #mybuttongroup input:checked+.btn-radio {
@@ -74,36 +76,20 @@
         background-size: cover;
         background-position: center;
         transform: scale(1.3);
-        /* background-image: url(https://img.lovepik.com/element/40125/0624.png_300.png); */
     }
 
     .buttons {
-        /* padding: 0.25em; */
         border-radius: 4em;
         border: none;
         background: white;
         color: black;
-        width: 4em;
+        width: 8em;
         height: 4em;
         margin: 1em;
     }
 
     .btn-play {
-        background: url(assets/play-button.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .btn-pause {
-        background: url(assets/pause-button.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    .btn-restart {
-        background: url(assets/refresh-button.png);
+        background: url(assets/playbutton_120x43px.png);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -116,65 +102,72 @@
     </div>
     <div class="buttongroup" id="mybuttongroup">
         <label><input type="radio" name="label" value="01" onclick="videocheck()" checked="checked">
-            <span class="btn-radio">貓貓</span></label>
+            <span class="btn-radio">P14</span></label>
         <label><input type="radio" name="label" value="02" onclick="videocheck()">
-            <span class="btn-radio">先放</span></label>
+            <span class="btn-radio">P18</span></label>
         <label><input type="radio" name="label" value="03" onclick="videocheck()">
-            <span class="btn-radio">先放</span></label>
+            <span class="btn-radio">P21</span></label>
         <label><input type="radio" name="label" value="04" onclick="videocheck()">
-            <span class="btn-radio">先放</span></label>
+            <span class="btn-radio">P25</span></label>
         <label><input type="radio" name="label" value="05" onclick="videocheck()">
-            <span class="btn-radio">先放</span></label>
-        <label><input type="radio" name="label" value="06" onclick="videocheck()">
-            <span class="btn-radio">先放</span></label>
+            <span class="btn-radio">P27</span></label>
     </div>
     <div class="buttongroup mybuttons" id="mybuttons-01">
-        <input type="button" onclick="playvideo('vid1')" class="buttons btn-play">
-        <input type="button" onclick="pausevideo('vid1')" class="buttons btn-pause">
-        <input type="button" onclick="revideo('vid1')" class="buttons btn-restart">
+        <input type="button" onclick="playvideo('vid_P14')" class="buttons btn-play">
     </div>
     <div class="buttongroup mybuttons" id="mybuttons-02">
-        <input type="button" onclick="playvideo('vid2')" class="buttons btn-play">
-        <input type="button" onclick="pausevideo('vid2')" class="buttons btn-pause">
-        <input type="button" onclick="revideo('vid2')" class="buttons btn-restart">
+        <input type="button" onclick="playvideo('vid_P18')" class="buttons btn-play">
     </div>
     <div class="buttongroup mybuttons" id="mybuttons-03">
-        <input type="button" onclick="playvideo('vid3')" class="buttons btn-play">
-        <input type="button" onclick="pausevideo('vid3')" class="buttons btn-pause">
-        <input type="button" onclick="revideo('vid3')" class="buttons btn-restart">
+        <input type="button" onclick="playvideo('vid_P21')" class="buttons btn-play">
     </div>
     <div class="buttongroup mybuttons" id="mybuttons-04">
-        <input type="button" onclick="playvideo('vid4')" class="buttons btn-play">
-        <input type="button" onclick="pausevideo('vid4')" class="buttons btn-pause">
-        <input type="button" onclick="revideo('vid4')" class="buttons btn-restart">
+        <input type="button" onclick="playvideo('vid_P25')" class="buttons btn-play">
     </div>
     <div class="buttongroup mybuttons" id="mybuttons-05">
-        <input type="button" onclick="playvideo('vid5')" class="buttons btn-play">
-        <input type="button" onclick="pausevideo('vid5')" class="buttons btn-pause">
-        <input type="button" onclick="revideo('vid5')" class="buttons btn-restart">
-    </div>
-    <div class="buttongroup mybuttons" id="mybuttons-06">
-        <input type="button" onclick="playvideo('vid6')" class="buttons btn-play">
-        <input type="button" onclick="pausevideo('vid6')" class="buttons btn-pause">
-        <input type="button" onclick="revideo('vid6')" class="buttons btn-restart">
+        <input type="button" onclick="playvideo('vid_P27')" class="buttons btn-play">
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-        <a-nft videohandler0209 type="nft" url="./data/0209" smooth="true" smoothCount="10" smoothTolerance=".01"
+        <a-nft type="nft" url="./data/P14_AR_01" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid1" position="50 -200 -100" rotation="-90 0 0" play="true" width=183 height=162>
+            <a-video src="#vid_P14" position="50 -200 -100" rotation="-90 0 0" play="true" width=183 height=162>
             </a-video>
         </a-nft>
-        <!-- <a-nft videohandler0209 type="nft" url="./data/02099" smooth="true" smoothCount="10" smoothTolerance=".01"
+        <a-nft type="nft" url="./data/P18_AR_02" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
-            <a-video src="#vid1" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
+            <a-video src="#vid_P18" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
             </a-video>
-        </a-nft> -->
+        </a-nft>
+        <a-nft type="nft" url="./data/P21_AR_03" smooth="true" smoothCount="10" smoothTolerance=".01"
+            smoothThreshold="5">
+            <a-video src="#vid_P21" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
+            </a-video>
+        </a-nft>
+        <a-nft type="nft" url="./data/P25_AR_04" smooth="true" smoothCount="10" smoothTolerance=".01"
+            smoothThreshold="5">
+            <a-video src="#vid_P25" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
+            </a-video>
+        </a-nft>
+        <a-nft type="nft" url="./data/P27_AR_05" smooth="true" smoothCount="10" smoothTolerance=".01"
+            smoothThreshold="5">
+            <a-video src="#vid_P27" position="150 -200 -300" rotation="-90 0 0" play="true" width=457.5 height=405>
+            </a-video>
+        </a-nft>
         <a-assets>
-            <video class="myvid" id="vid1" src="assets/AR_Test 02.mp4" preload="auto" autoplay="false" loop="true"
+            <video class="myvid" id="vid_P14" src="assets/P14_AR_01.mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
-            <video class="myvid" id="vid2" src="assets/AR_Test 02.mp4" preload="auto" autoplay="false" loop="true"
+            <video class="myvid" id="vid_P18" src="assets/P18_AR_02.mp4" preload="auto" autoplay="false" loop="true"
+                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
+            </video>
+            <video class="myvid" id="vid_P21" src="assets/P18_AR_02.mp4" preload="auto" autoplay="false" loop="true"
+                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
+            </video>
+            <video class="myvid" id="vid_P25" src="assets/P25_AR_04.mp4" preload="auto" autoplay="false" loop="true"
+                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
+            </video>
+            <video class="myvid" id="vid_P27" src="assets/P27_AR_05.mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
         </a-assets>
@@ -185,14 +178,6 @@
         function playvideo(vidnum) {
             var videoEl_1 = document.querySelector('#' + vidnum);
             videoEl_1.play();
-        }
-        function pausevideo(vidnum) {
-            var videoEl_1 = document.querySelector('#' + vidnum);
-            videoEl_1.pause();
-        }
-        function revideo(vidnum) {
-            var videoEl_1 = document.querySelector('#' + vidnum);
-            videoEl_1.currentTime = 0;
         }
         function videocheck() {
             var label = document.querySelector('input[name = "label"]:checked').value;
