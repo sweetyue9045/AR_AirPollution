@@ -230,13 +230,12 @@
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
         </a-assets>
-
         <a-entity camera></a-entity>
     </a-scene>
-
     <template id="template01">
         <div class="aqi-pollutant" data-speed="1"></div>
     </template>
+
     <script>
         var county = "";
         const AllData = [];
@@ -283,7 +282,6 @@
             } else {
                 x.innerHTML = "Geolocation is not supported by this browser.";
             }
-            console.log("RRRRR")
         }
         function showPosition(position) {
             var latlon = position.coords.latitude + "," + position.coords.longitude;
@@ -305,31 +303,6 @@
                     console.log('錯誤:', err);
                 });
         }
-        function useData() {
-            fetch("https://data.epa.gov.tw/api/v1/aqx_p_432?limit=1000&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&sort=ImportDate%20desc&format=json")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    myJson.records.forEach((data) => {
-                        if (data.SiteName === "宜蘭" || data.SiteName === "基隆" || data.SiteName === "板橋" || data.SiteName === "古亭" || data.SiteName === "桃園" || data.SiteName === "新竹" || data.SiteName === "湖口" || data.SiteName === "苗栗" || data.SiteName === "忠明" || data.SiteName === "彰化" || data.SiteName === "南投" || data.SiteName === "斗六" || data.SiteName === "嘉義" || data.SiteName === "新港" || data.SiteName === "臺南" || data.SiteName === "左營" || data.SiteName === "屏東" || data.SiteName === "花蓮" || data.SiteName === "臺東" || data.SiteName === "馬公" || data.SiteName === "金門" || data.SiteName === "馬祖") {
-                            AllData.push(data)
-                        }
-                    })
-
-                    AllData.forEach((data) => {
-                        console.log(data.County)
-                        if (data.County === county) {
-                            countyData.push(data)
-                        }
-                    })
-                    useAQI();
-                })
-                .catch((err) => {
-                    console.log('錯誤:', err);
-                });
-
-        }
         function showError(error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
@@ -346,6 +319,28 @@
                     break;
             }
         }
+        function useData() {
+            fetch("https://data.epa.gov.tw/api/v1/aqx_p_432?limit=1000&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&sort=ImportDate%20desc&format=json")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    myJson.records.forEach((data) => {
+                        if (data.SiteName === "宜蘭" || data.SiteName === "基隆" || data.SiteName === "板橋" || data.SiteName === "古亭" || data.SiteName === "桃園" || data.SiteName === "新竹" || data.SiteName === "湖口" || data.SiteName === "苗栗" || data.SiteName === "忠明" || data.SiteName === "彰化" || data.SiteName === "南投" || data.SiteName === "斗六" || data.SiteName === "嘉義" || data.SiteName === "新港" || data.SiteName === "臺南" || data.SiteName === "左營" || data.SiteName === "屏東" || data.SiteName === "花蓮" || data.SiteName === "臺東" || data.SiteName === "馬公" || data.SiteName === "金門" || data.SiteName === "馬祖") {
+                            AllData.push(data)
+                        }
+                    })
+                    AllData.forEach((data) => {
+                        if (data.County === county) {
+                            countyData.push(data)
+                        }
+                    })
+                    useAQI();
+                })
+                .catch((err) => {
+                    console.log('錯誤:', err);
+                });
+        }
         function useAQI() {
             var fake = Math.floor(Math.random() * 8) + 1
             var fake_AQI = (Math.floor(Math.random() * 6) + 40) * fake
@@ -357,6 +352,7 @@
             else if (fake_AQI >= 51) fake_Status = "普通"
             else fake_Status = "良好"
             document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + fake_AQI + " (" + fake_Status + ")"
+            
             // document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + countyData[0].AQI + " (" + countyData[0].Status + ")"
             var lists = document.getElementsByClassName("aqi-pollutant")
 
@@ -364,7 +360,6 @@
                 case "良好":
                     makeRam(5)
                     for (i = 0; i < lists.length; i++) {
-                        // lists[i].style.filter="invert(50%) sepia(90%) saturate(5679%) hue-rotate(145deg) brightness(95%) contrast(101%)";
                         // #009865
                         lists[i].style.filter = "invert(48%) sepia(52%) saturate(5934%) hue-rotate(138deg) brightness(88%) contrast(101%)";
                         var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
@@ -383,7 +378,6 @@
                         lists[i].style.left = w + "px";
                         lists[i].style.top = h + "px";
                     }
-
                     break;
                 case "對敏感族群不健康":
                     makeRam(15)
@@ -395,7 +389,6 @@
                         lists[i].style.left = w + "px";
                         lists[i].style.top = h + "px";
                     }
-
                     break;
                 case "對所有族群不健康":
                     makeRam(20)
@@ -406,7 +399,6 @@
                         lists[i].style.left = w + "px";
                         lists[i].style.top = h + "px";
                     }
-
                     break;
                 case "非常不健康":
                     makeRam(25)
@@ -417,7 +409,6 @@
                         lists[i].style.left = w + "px";
                         lists[i].style.top = h + "px";
                     }
-
                     break;
                 case "危害":
                     makeRam(35)
@@ -428,14 +419,12 @@
                         lists[i].style.left = w + "px";
                         lists[i].style.top = h + "px";
                     }
-
                     break;
                 default:
                     break;
             }
             updata()
         }
-
         function makeRam(num) {
             let tmp = document.getElementById("template01");
             let div = tmp.innerHTML;
@@ -443,13 +432,13 @@
                 document.getElementById("aqi-ram").insertAdjacentHTML("afterBegin", div)
             }
         }
-
         function updata() {
             var lists = document.getElementsByClassName("aqi-pollutant")
             const listXmax = []; //右邊界
             const listXmin = []; //左邊界
             const listYmax = []; //上邊界
             const listYmin = []; //下邊界
+
             for (a = 0; a < lists.length; a++) {
                 listXmax.push(lists[a].offsetLeft + 50)
                 listXmin.push(lists[a].offsetLeft - 50)
@@ -464,6 +453,7 @@
                     var j = (Math.random() * 2) - 1
                     disx = lists[a].offsetLeft + i;
                     disy = lists[a].offsetTop + j;
+                    
                     if (disx >= listXmax[a]) {
                         disx = listXmax[a];
                         i = -i;
