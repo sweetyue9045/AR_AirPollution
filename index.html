@@ -95,7 +95,7 @@
         border-radius: 2.5em;
         width: 3em;
         height: 1.75em;
-        margin: 0.8em;
+        margin: 0.5em;
         cursor: pointer;
         background-size: contain;
         background-position: center;
@@ -347,9 +347,20 @@
             }
         }
         function useAQI() {
-            document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + countyData[0].AQI + " (" + countyData[0].Status + ")"
+            var fake = Math.floor(Math.random() * 8) + 1
+            var fake_AQI = (Math.floor(Math.random() * 6) + 40) * fake
+            var fake_Status = "";
+            if (fake_AQI >= 301) fake_Status = "危害"
+            else if (fake_AQI >= 201) fake_Status = "非常不健康"
+            else if (fake_AQI >= 151) fake_Status = "對所有族群不健康"
+            else if (fake_AQI >= 101) fake_Status = "對敏感族群不健康"
+            else if (fake_AQI >= 51) fake_Status = "普通"
+            else fake_Status = "良好"
+            document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + fake_AQI + " (" + fake_Status + ")"
+            // document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + countyData[0].AQI + " (" + countyData[0].Status + ")"
             var lists = document.getElementsByClassName("aqi-pollutant")
-            switch (countyData[0].Status) {
+
+            switch (fake_Status) {
                 case "良好":
                     makeRam(5)
                     for (i = 0; i < lists.length; i++) {
