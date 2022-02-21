@@ -331,10 +331,12 @@
                         useRam(5)
                         for (i = 0; i < lists.length; i++) {
                             lists[i].style.backgroundColor = "#0D9262"
-                            var w = Math.floor(Math.random() * ((document.body.clientWidth / 5)-10));
-                            var h = Math.floor(Math.random() * ((document.body.clientHeight / 5)-10));
-                            lists[i].style.left = w * (i + 1) + "px";
-                            lists[i].style.top = h * (i + 1) + "px";
+                            var w = Math.floor(Math.random() * ((document.body.clientWidth / 5) - 10)) + 10;
+                            var h = Math.floor(Math.random() * ((document.body.clientHeight / 5) - 50)) + 50;
+                            lists[i].style.left = w + (document.body.clientHeight / 5 * i) + "px";
+                            lists[i].style.top = h + (document.body.clientHeight / 5 * i) + "px";
+
+                            alert(document.body.clientWidth + "/" + document.body.clientHeight + "/" + (w + (document.body.clientHeight / 5 * i)) + "/" + (h + (document.body.clientHeight / 5 * i)))
                         }
                         break;
                     case "普通":
