@@ -325,50 +325,53 @@
         function useAQI() {
             document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + countyData[0].AQI + " (" + countyData[0].Status + ")"
             var lists = document.getElementsByClassName("aqi-pollutant")
-            switch (countyData[0].Status) {
-                case "良好":
-                    useRam(5)
-                    for (i = 0; i < lists.length; ++i) {
-                        lists[i].style.backgroundColor = "#0D9262"
-                        var w = Math.floor(Math.random() * (document.body.clientWidth-10)) + 10;
-                        var h = Math.floor(Math.random() * (document.body.clientHeight-10)) + 10
-                        lists[i].style.left = w+"px";
-                        lists[i].style.top = h+"px";
-                    }
-                    break;
-                case "普通":
-                    useRam(10)
-                    for (i = 0; i < lists.length; ++i) {
-                        lists[i].style.backgroundColor = "#F2EC44"
-                    }
-                    break;
-                case "對敏感族群不健康":
-                    useRam(15)
-                    for (i = 0; i < lists.length; ++i) {
-                        lists[i].style.backgroundColor = "#F2EC44"
-                    }
-                    break;
-                case "對所有族群不健康":
-                    useRam(20)
-                    for (i = 0; i < lists.length; ++i) {
-                        lists[i].style.backgroundColor = "#BE1834"
-                    }
-                    break;
-                case "非常不健康":
-                    useRam(25)
-                    for (i = 0; i < lists.length; ++i) {
-                        lists[i].style.backgroundColor = "#5D1986"
-                    }
-                    break;
-                case "危害":
-                    useRam(30)
-                    for (i = 0; i < lists.length; ++i) {
-                        lists[i].style.backgroundColor = "#791725"
-                    }
-                    break;
-                default:
-                    break;
-            }
+            setTimeout(function () {
+                switch (countyData[0].Status) {
+                    case "良好":
+                        useRam(5)
+                        for (i = 0; i < lists.length; ++i) {
+                            lists[i].style.backgroundColor = "#0D9262"
+                            var w = Math.floor(Math.random() * (document.body.clientWidth - 100)) + 20;
+                            var h = Math.floor(Math.random() * (document.body.clientHeight - 100)) + 20;
+                            lists[i].style.left = w + "px";
+                            lists[i].style.top = h + "px";
+                        }
+                        break;
+                    case "普通":
+                        useRam(10)
+                        for (i = 0; i < lists.length; ++i) {
+                            lists[i].style.backgroundColor = "#F2EC44"
+                        }
+                        break;
+                    case "對敏感族群不健康":
+                        useRam(15)
+                        for (i = 0; i < lists.length; ++i) {
+                            lists[i].style.backgroundColor = "#F2EC44"
+                        }
+                        break;
+                    case "對所有族群不健康":
+                        useRam(20)
+                        for (i = 0; i < lists.length; ++i) {
+                            lists[i].style.backgroundColor = "#BE1834"
+                        }
+                        break;
+                    case "非常不健康":
+                        useRam(25)
+                        for (i = 0; i < lists.length; ++i) {
+                            lists[i].style.backgroundColor = "#5D1986"
+                        }
+                        break;
+                    case "危害":
+                        useRam(30)
+                        for (i = 0; i < lists.length; ++i) {
+                            lists[i].style.backgroundColor = "#791725"
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }, 3000);
+
         }
 
         function useRam(num) {
