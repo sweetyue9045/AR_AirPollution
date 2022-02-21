@@ -58,10 +58,14 @@
     }
 
     .aqi-pollutant {
-        height: 0.8em;
-        width: 0.8em;
+        height: 1.5em;
+        width: 1.5em;
         border-radius: 50%;
         position: absolute;
+        background: url(assets/particle_64_64px.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
     .buttongroup {
@@ -197,8 +201,8 @@
             <video class="myvid" id="vid_P18" src="assets/P18_AR_02 (1).mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
-            <video class="myvid" id="vid_P21" src="assets/P18_AR_02.mp4" preload="auto" autoplay="false"
-                loop="true" response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
+            <video class="myvid" id="vid_P21" src="assets/P18_AR_02.mp4" preload="auto" autoplay="false" loop="true"
+                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
             <video class="myvid" id="vid_P25" src="assets/P25_AR_04 (1).mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
@@ -254,17 +258,13 @@
                     break;
             }
         }
-        window.onload = function () {
-            document.getElementById("mybuttongroup").style.display = "flex";
-            videocheck();
-            getLocation();
-        };
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition, showError);
             } else {
                 x.innerHTML = "Geolocation is not supported by this browser.";
             }
+            console.log("RRRRR")
         }
         function showPosition(position) {
             var latlon = position.coords.latitude + "," + position.coords.longitude;
@@ -299,6 +299,7 @@
                     })
 
                     AllData.forEach((data) => {
+                        console.log(data.County)
                         if (data.County === county) {
                             countyData.push(data)
                         }
@@ -329,12 +330,13 @@
         function useAQI() {
             document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + countyData[0].AQI + " (" + countyData[0].Status + ")"
             var lists = document.getElementsByClassName("aqi-pollutant")
-            setTimeout(function () {
                 switch (countyData[0].Status) {
                     case "良好":
                         makeRam(5)
                         for (i = 0; i < lists.length; i++) {
-                            lists[i].style.backgroundColor = "#0D9262"
+                            // lists[i].style.filter="invert(50%) sepia(90%) saturate(5679%) hue-rotate(145deg) brightness(95%) contrast(101%)";
+                            // #009865
+                            lists[i].style.filter = "invert(48%) sepia(52%) saturate(5934%) hue-rotate(138deg) brightness(88%) contrast(101%)";
                             var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
                             var h = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetHeight)));
                             lists[i].style.left = w + "px";
@@ -344,7 +346,8 @@
                     case "普通":
                         makeRam(10)
                         for (i = 0; i < lists.length; i++) {
-                            lists[i].style.backgroundColor = "#0D9262"
+                            // #fffb26
+                            lists[i].style.filter = "invert(99%) sepia(89%) saturate(4954%) hue-rotate(331deg) brightness(112%) contrast(106%)";
                             var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
                             var h = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetHeight)));
                             lists[i].style.left = w + "px";
@@ -355,7 +358,8 @@
                     case "對敏感族群不健康":
                         makeRam(15)
                         for (i = 0; i < lists.length; i++) {
-                            lists[i].style.backgroundColor = "#0D9262"
+                            // #ff9835
+                            lists[i].style.filter = "invert(76%) sepia(67%) saturate(2583%) hue-rotate(332deg) brightness(100%) contrast(103%)";
                             var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
                             var h = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetHeight)));
                             lists[i].style.left = w + "px";
@@ -366,8 +370,8 @@
                     case "對所有族群不健康":
                         makeRam(20)
                         for (i = 0; i < lists.length; i++) {
-                            lists[i].style.backgroundColor = "#0D9262"
-                            var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
+                            // #ca0034
+                            lists[i].style.filter = "invert(16%) sepia(74%) saturate(5381%) hue-rotate(336deg) brightness(76%) contrast(113%)"; var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
                             var h = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetHeight)));
                             lists[i].style.left = w + "px";
                             lists[i].style.top = h + "px";
@@ -377,8 +381,8 @@
                     case "非常不健康":
                         makeRam(25)
                         for (i = 0; i < lists.length; i++) {
-                            lists[i].style.backgroundColor = "#0D9262"
-                            var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
+                            // #670099
+                            lists[i].style.filter = "invert(16%) sepia(93%) saturate(5320%) hue-rotate(279deg) brightness(62%) contrast(115%)"; var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
                             var h = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetHeight)));
                             lists[i].style.left = w + "px";
                             lists[i].style.top = h + "px";
@@ -388,8 +392,8 @@
                     case "危害":
                         makeRam(30)
                         for (i = 0; i < lists.length; i++) {
-                            lists[i].style.backgroundColor = "#0D9262"
-                            var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
+                            // #7e0123
+                            lists[i].style.filter = "invert(9%) sepia(62%) saturate(5250%) hue-rotate(333deg) brightness(93%) contrast(107%)"; var w = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetWidth)));
                             var h = Math.floor(Math.random() * ((document.getElementById("aqi-ram").offsetHeight)));
                             lists[i].style.left = w + "px";
                             lists[i].style.top = h + "px";
@@ -400,8 +404,6 @@
                         break;
                 }
                 updata()
-            }, 3000);
-
         }
 
         function makeRam(num) {
@@ -602,5 +604,11 @@
             var json = X.toJson(X.toObj(X.removeWhite(xml)), xml.nodeName, "\t");
             return "{\n" + tab + (tab ? json.replace(/\t/g, tab) : json.replace(/\t|\n/g, "")) + "\n}";
         }
+
+        window.onload = function () {
+            document.getElementById("mybuttongroup").style.display = "flex";
+            videocheck();
+            setTimeout(getLocation,3000)
+        };
     </script>
 </body>
