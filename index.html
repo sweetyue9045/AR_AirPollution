@@ -30,6 +30,34 @@
         text-align: center;
         font-size: 1.25em;
         color: white;
+        margin-top: -5em;
+    }
+
+    .aqi-block {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+    }
+
+    .aqi-text {
+        font-family: '微軟正黑體', cursive;
+        margin: 0.5em;
+        color: #fff;
+    }
+
+    .aqi-ram {
+        height: 100%;
+        width: 100%;
+    }
+
+    .aqi-pollutant {
+        height: 0.8em;
+        width: 0.8em;
+        border-radius: 50%;
+        position: absolute;
     }
 
     .buttongroup {
@@ -99,6 +127,10 @@
 <body style="margin : 0px; overflow: hidden;">
     <div class="arjs-loader">
         <div>Loading, please wait...</div>
+    </div>
+    <div class="aqi-block" id="aqi-block">
+        <div class="aqi-text" id="aqi-text"></div>
+        <div class="aqi-ram" id="aqi-ram"></div>
     </div>
     <div class="buttongroup" id="mybuttongroup">
         <label><input type="radio" name="label" value="01" onclick="videocheck()" checked="checked">
@@ -174,9 +206,13 @@
 
         <a-entity camera></a-entity>
     </a-scene>
+
+    <template id="template01">
+        <div class="aqi-pollutant"></div>
+    </template>
     <script>
         var county = "";
-        var AllData = "";
+        const AllData = [];
         const countyData = [];
 
         function playvideo(vidnum) {
@@ -194,20 +230,24 @@
                 vids[i].pause();
                 vids[i].currentTime = 0;
             }
-            if (label == "01") {
-                document.getElementById("mybuttons-01").style.display = "flex";
-            }
-            else if (label == "02") {
-                document.getElementById("mybuttons-02").style.display = "flex";
-            }
-            else if (label == "03") {
-                document.getElementById("mybuttons-03").style.display = "flex";
-            }
-            else if (label == "04") {
-                document.getElementById("mybuttons-04").style.display = "flex";
-            }
-            else if (label == "05") {
-                document.getElementById("mybuttons-05").style.display = "flex";
+            switch (label) {
+                case "01":
+                    document.getElementById("mybuttons-01").style.display = "flex";
+                    break;
+                case "02":
+                    document.getElementById("mybuttons-02").style.display = "flex";
+                    break;
+                case "03":
+                    document.getElementById("mybuttons-03").style.display = "flex";
+                    break;
+                case "04":
+                    document.getElementById("mybuttons-04").style.display = "flex";
+                    break;
+                case "05":
+                    document.getElementById("mybuttons-05").style.display = "flex";
+                    break;
+                default:
+                    break;
             }
         }
         window.onload = function () {
@@ -225,7 +265,6 @@
         function showPosition(position) {
             var latlon = position.coords.latitude + "," + position.coords.longitude;
 
-            console.log(latlon)
             fetch("https://api.nlsc.gov.tw/other/TownVillagePointQuery/" + position.coords.longitude + "/" + position.coords.latitude + "/4326")
                 .then(function (response) {
                     return response.text();
@@ -237,39 +276,36 @@
                 .then(jsonData => {
                     let myjson = JSON.parse(jsonData);
                     county = myjson.townVillageItem.ctyName
-                    alert("所在地："+county)
                     useData()
                 })
                 .catch((err) => {
                     console.log('錯誤:', err);
                 });
         }
-
-
         function useData() {
             fetch("https://data.epa.gov.tw/api/v1/aqx_p_432?limit=1000&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&sort=ImportDate%20desc&format=json")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
-                    AllData = myJson.records;
+                    myJson.records.forEach((data) => {
+                        if (data.SiteName === "宜蘭" || data.SiteName === "基隆" || data.SiteName === "板橋" || data.SiteName === "古亭" || data.SiteName === "桃園" || data.SiteName === "新竹" || data.SiteName === "湖口" || data.SiteName === "苗栗" || data.SiteName === "忠明" || data.SiteName === "彰化" || data.SiteName === "南投" || data.SiteName === "斗六" || data.SiteName === "嘉義" || data.SiteName === "新港" || data.SiteName === "臺南" || data.SiteName === "左營" || data.SiteName === "屏東" || data.SiteName === "花蓮" || data.SiteName === "臺東" || data.SiteName === "馬公" || data.SiteName === "金門" || data.SiteName === "馬祖") {
+                            AllData.push(data)
+                        }
+                    })
+
                     AllData.forEach((data) => {
                         if (data.County === county) {
                             countyData.push(data)
                         }
                     })
-                    console.log(countyData)
+                    useAQI();
                 })
                 .catch((err) => {
                     console.log('錯誤:', err);
                 });
 
         }
-
-
-        //To use this code on your website, get a free API key from Google.
-        //Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
-
         function showError(error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
@@ -284,6 +320,62 @@
                 case error.UNKNOWN_ERROR:
                     x.innerHTML = "An unknown error occurred."
                     break;
+            }
+        }
+        function useAQI() {
+            document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + countyData[0].AQI + " (" + countyData[0].Status + ")"
+            var lists = document.getElementsByClassName("aqi-pollutant")
+            switch (countyData[0].Status) {
+                case "良好":
+                    useRam(5)
+                    for (i = 0; i < lists.length; ++i) {
+                        lists[i].style.backgroundColor = "#0D9262"
+                        var w = Math.floor(Math.random() * (document.body.clientWidth-10)) + 10;
+                        var h = Math.floor(Math.random() * (document.body.clientHeight-10)) + 10
+                        lists[i].style.left = w+"px";
+                        lists[i].style.top = h+"px";
+                    }
+                    break;
+                case "普通":
+                    useRam(10)
+                    for (i = 0; i < lists.length; ++i) {
+                        lists[i].style.backgroundColor = "#F2EC44"
+                    }
+                    break;
+                case "對敏感族群不健康":
+                    useRam(15)
+                    for (i = 0; i < lists.length; ++i) {
+                        lists[i].style.backgroundColor = "#F2EC44"
+                    }
+                    break;
+                case "對所有族群不健康":
+                    useRam(20)
+                    for (i = 0; i < lists.length; ++i) {
+                        lists[i].style.backgroundColor = "#BE1834"
+                    }
+                    break;
+                case "非常不健康":
+                    useRam(25)
+                    for (i = 0; i < lists.length; ++i) {
+                        lists[i].style.backgroundColor = "#5D1986"
+                    }
+                    break;
+                case "危害":
+                    useRam(30)
+                    for (i = 0; i < lists.length; ++i) {
+                        lists[i].style.backgroundColor = "#791725"
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function useRam(num) {
+            let tmp = document.getElementById("template01");
+            let div = tmp.innerHTML;
+            for (let i = 1; i <= num; i++) {
+                document.getElementById("aqi-ram").insertAdjacentHTML("afterBegin", div)
             }
         }
 
