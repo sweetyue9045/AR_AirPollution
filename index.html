@@ -84,11 +84,15 @@
         bottom: 6.5em;
     }
 
-    #mybuttongroup input[type="radio"] {
+    #mybuttongroup2 {
+        bottom: 10.5em;
+    }
+
+    #mybuttongroup input[type="radio"],#mybuttongroup2 input[type="radio"] {
         display: none;
     }
 
-    #mybuttongroup .btn-radio {
+    #mybuttongroup .btn-radio ,#mybuttongroup2 .btn-radio{
         -webkit-tap-highlight-color: transparent;
         display: inline-block;
         line-height: 2.5em;
@@ -103,7 +107,7 @@
         filter: brightness(50%);
     }
 
-    #mybuttongroup input:checked+.btn-radio {
+    #mybuttongroup input:checked+.btn-radio,#mybuttongroup2 input:checked+.btn-radio {
         cursor: default;
         background-size: contain;
         background-repeat: no-repeat;
@@ -114,23 +118,31 @@
     }
 
     #mybuttongroup label:nth-child(1) .btn-radio {
-        background-image: url(assets/AR___01.png);
+        background-image: url(assets/AR_01.png);
     }
 
     #mybuttongroup label:nth-child(2) .btn-radio {
-        background-image: url(assets/AR___02.png);
+        background-image: url(assets/AR_02.png);
     }
 
     #mybuttongroup label:nth-child(3) .btn-radio {
-        background-image: url(assets/AR___03.png);
+        background-image: url(assets/AR_03.png);
     }
 
     #mybuttongroup label:nth-child(4) .btn-radio {
-        background-image: url(assets/AR___04.png);
+        background-image: url(assets/AR_04.png);
     }
 
     #mybuttongroup label:nth-child(5) .btn-radio {
-        background-image: url(assets/AR___05.png);
+        background-image: url(assets/AR_05.png);
+    }
+
+    #mybuttongroup2 label:nth-child(1) .btn-radio {
+        background-image: url(assets/AR_00.png);
+    }
+
+    #mybuttongroup2 label:nth-child(2) .btn-radio {
+        background-image: url(assets/AR_06.png);
     }
 
     .buttons {
@@ -158,8 +170,14 @@
         <div class="aqi-text" id="aqi-text"></div>
         <div class="aqi-ram" id="aqi-ram"></div>
     </div>
+    <div class="buttongroup" id="mybuttongroup2">
+        <label><input type="radio" name="label" value="00" onclick="videocheck()" checked="checked">
+            <span class="btn-radio"></span></label>
+        <label><input type="radio" name="label" value="06" onclick="videocheck()">
+            <span class="btn-radio"></span></label>
+    </div>
     <div class="buttongroup" id="mybuttongroup">
-        <label><input type="radio" name="label" value="01" onclick="videocheck()" checked="checked">
+        <label><input type="radio" name="label" value="01" onclick="videocheck()">
             <span class="btn-radio"></span></label>
         <label><input type="radio" name="label" value="02" onclick="videocheck()">
             <span class="btn-radio"></span></label>
@@ -169,6 +187,12 @@
             <span class="btn-radio"></span></label>
         <label><input type="radio" name="label" value="05" onclick="videocheck()">
             <span class="btn-radio"></span></label>
+    </div>
+    <div class="buttongroup mybuttons" id="mybuttons-00">
+        <input type="button" onclick="playvideo('vid_P00')" class="buttons btn-play">
+    </div>
+    <div class="buttongroup mybuttons" id="mybuttons-06">
+        <input type="button" onclick="playvideo('vid_P31')" class="buttons btn-play">
     </div>
     <div class="buttongroup mybuttons" id="mybuttons-01">
         <input type="button" onclick="playvideo('vid_P14')" class="buttons btn-play">
@@ -187,6 +211,16 @@
     </div>
     <a-scene vr-mode-ui="enabled: false;" renderer="antialias: true; alpha: true; precision: mediump;" embedded
         arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+        <a-nft type="nft" url="./data/AR_00" smooth="true" smoothCount="10" smoothTolerance=".01"
+            smoothThreshold="5">
+            <a-video src="#vid_P00" position="40 -200 -50" rotation="-90 0 0" play="true" width=125 height=125>
+            </a-video>
+        </a-nft>
+        <a-nft type="nft" url="./data/AR_06" smooth="true" smoothCount="10" smoothTolerance=".01"
+            smoothThreshold="5">
+            <a-video src="#vid_P31" position="40 -200 -50" rotation="-90 0 0" play="true" width=125 height=125>
+            </a-video>
+        </a-nft>
         <a-nft type="nft" url="./data/P14_AR_01" smooth="true" smoothCount="10" smoothTolerance=".01"
             smoothThreshold="5">
             <a-video src="#vid_P14" position="40 -200 -50" rotation="-90 0 0" play="true" width=125 height=125>
@@ -213,6 +247,12 @@
             </a-video>
         </a-nft>
         <a-assets>
+            <video class="myvid" id="vid_P00" src="assets/P00_AR_00.mp4" preload="auto" autoplay="false" loop="true"
+                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
+            </video>
+            <video class="myvid" id="vid_P31" src="assets/P31_AR_06 (1).mp4" preload="auto" autoplay="false" loop="true"
+                response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
+            </video>
             <video class="myvid" id="vid_P14" src="assets/P14_AR_01 (1).mp4" preload="auto" autoplay="false" loop="true"
                 response-type="arraybuffer" crossorigin webkit-playsinline playsinline>
             </video>
@@ -255,7 +295,7 @@
                 vids[i].pause();
                 vids[i].currentTime = 0;
             }
-            document.getElementById("mybuttons-"+label).style.display = "flex";
+            document.getElementById("mybuttons-" + label).style.display = "flex";
         }
         function getLocation() {
             if (navigator.geolocation) {
@@ -333,7 +373,7 @@
             else if (fake_AQI >= 51) fake_Status = "普通"
             else fake_Status = "良好"
             document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + fake_AQI + " (" + fake_Status + ")"
-            
+
             // document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + countyData[0].AQI + " (" + countyData[0].Status + ")"
             var lists = document.getElementsByClassName("aqi-pollutant")
 
@@ -434,7 +474,7 @@
                     var j = (Math.random() * 2) - 1
                     disx = lists[a].offsetLeft + i;
                     disy = lists[a].offsetTop + j;
-                    
+
                     if (disx >= listXmax[a]) {
                         disx = listXmax[a];
                         i = -i;
@@ -608,6 +648,7 @@
 
         window.onload = function () {
             document.getElementById("mybuttongroup").style.display = "flex";
+            document.getElementById("mybuttongroup2").style.display = "flex";
             videocheck();
             setTimeout(getLocation, 3000)
         };
