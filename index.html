@@ -306,7 +306,7 @@
         }
         function showPosition(position) {
             var latlon = position.coords.latitude + "," + position.coords.longitude;
-
+            console.log(latlon)
             fetch("https://api.nlsc.gov.tw/other/TownVillagePointQuery/" + position.coords.longitude + "/" + position.coords.latitude + "/4326")
                 .then(function (response) {
                     return response.text();
