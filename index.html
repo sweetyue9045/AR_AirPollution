@@ -340,8 +340,10 @@
                     break;
             }
         }
+
+        //mydate https://data.epa.gov.tw/api/v2/aqx_p_432?offset=0&limit=1000&api_key=e01f2840-11a6-497b-9685-9a4e7c40a9f1
         function useData() {
-            fetch("https://data.epa.gov.tw/api/v2/aqx_p_432?offset=0&limit=1000&api_key=e01f2840-11a6-497b-9685-9a4e7c40a9f1")
+            fetch("https://data.epa.gov.tw/api/v2/aqx_p_432?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1000&sort=ImportDate%20desc&format=JSON")
                 .then(function (response) {
                     return response.json();
                 })
