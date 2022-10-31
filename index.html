@@ -341,18 +341,18 @@
             }
         }
         function useData() {
-            fetch("https://data.epa.gov.tw/api/v1/aqx_p_432?limit=1000&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&sort=ImportDate%20desc&format=json")
+            fetch("https://data.epa.gov.tw/api/v2/aqx_p_432?offset=0&limit=1000&api_key=e01f2840-11a6-497b-9685-9a4e7c40a9f1")
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
                     myJson.records.forEach((data) => {
-                        if (data.SiteName === "宜蘭" || data.SiteName === "基隆" || data.SiteName === "板橋" || data.SiteName === "古亭" || data.SiteName === "桃園" || data.SiteName === "新竹" || data.SiteName === "湖口" || data.SiteName === "苗栗" || data.SiteName === "忠明" || data.SiteName === "彰化" || data.SiteName === "南投" || data.SiteName === "斗六" || data.SiteName === "嘉義" || data.SiteName === "新港" || data.SiteName === "臺南" || data.SiteName === "左營" || data.SiteName === "屏東" || data.SiteName === "花蓮" || data.SiteName === "臺東" || data.SiteName === "馬公" || data.SiteName === "金門" || data.SiteName === "馬祖") {
+                        if (data.sitename === "宜蘭" || data.sitename === "基隆" || data.sitename === "板橋" || data.sitename === "古亭" || data.sitename === "桃園" || data.sitename === "新竹" || data.sitename === "湖口" || data.sitename === "苗栗" || data.sitename === "忠明" || data.sitename === "彰化" || data.sitename === "南投" || data.sitename === "斗六" || data.sitename === "嘉義" || data.sitename === "新港" || data.sitename === "臺南" || data.sitename === "左營" || data.sitename === "屏東" || data.sitename === "花蓮" || data.sitename === "臺東" || data.sitename === "馬公" || data.sitename === "金門" || data.sitename === "馬祖") {
                             AllData.push(data)
                         }
                     })
                     AllData.forEach((data) => {
-                        if (data.County === county) {
+                        if (data.county === county) {
                             countyData.push(data)
                         }
                     })
@@ -363,21 +363,21 @@
                 });
         }
         function useAQI() {
-            var fake = Math.floor(Math.random() * 8) + 1
-            var fake_AQI = (Math.floor(Math.random() * 6) + 40) * fake
-            var fake_Status = "";
-            if (fake_AQI >= 301) fake_Status = "危害"
-            else if (fake_AQI >= 201) fake_Status = "非常不健康"
-            else if (fake_AQI >= 151) fake_Status = "對所有族群不健康"
-            else if (fake_AQI >= 101) fake_Status = "對敏感族群不健康"
-            else if (fake_AQI >= 51) fake_Status = "普通"
-            else fake_Status = "良好"
-            document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + fake_AQI + " (" + fake_Status + ")"
-
-            // document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].County + "<br/>空氣品質指標 (AQI)：" + countyData[0].AQI + " (" + countyData[0].Status + ")"
+            // var fake = Math.floor(Math.random() * 8) + 1
+            // var fake_AQI = (Math.floor(Math.random() * 6) + 40) * fake
+            // var fake_Status = "";
+            // if (fake_AQI >= 301) fake_Status = "危害"
+            // else if (fake_AQI >= 201) fake_Status = "非常不健康"
+            // else if (fake_AQI >= 151) fake_Status = "對所有族群不健康"
+            // else if (fake_AQI >= 101) fake_Status = "對敏感族群不健康"
+            // else if (fake_AQI >= 51) fake_Status = "普通"
+            // else fake_Status = "良好"
+            // document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].county + "<br/>空氣品質指標 (AQI)：" + fake_AQI + " (" + fake_Status + ")"
+            console.log(countyData)
+            document.getElementById("aqi-text").innerHTML = "所在地：" + countyData[0].county + "<br/>空氣品質指標 (AQI)：" + countyData[0].aqi + " (" + countyData[0].status + ")"
             var lists = document.getElementsByClassName("aqi-pollutant")
 
-            switch (fake_Status) {
+            switch (countyData[0].aqi) {
                 case "良好":
                     makeRam(5)
                     for (i = 0; i < lists.length; i++) {
